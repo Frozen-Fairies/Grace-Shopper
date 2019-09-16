@@ -54,7 +54,35 @@ const Film = db.define('film', {
   },
   releaseDate: {
     type: Sequelize.DATEONLY
+  },
+  tags: {
+    type: Sequelize.ARRAY(Sequelize.TEXT)
   }
 })
+
+Film.beforeValidate(film => {
+  /*
+   * Generate slug
+   */
+  if (!film.uniqueId) {
+    film.uniqueId = film.title
+      .replace(/\s/g, '_')
+      .replace(/\W/g, '')
+      .toLowerCase()
+  }
+})
+
+Film.findByTag = function(tag) {
+  const Op = Sequelize.Op
+  let searchResults = Film.findAll({
+    // Op.overlap matches a set of possibilities
+    where: {
+      tags: {
+        [Op.overlap]: [tag]
+      }
+    }
+  })
+  return searchResults
+}
 
 module.exports = Film
