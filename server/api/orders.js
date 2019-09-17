@@ -96,4 +96,48 @@ router.put('/cart/:filmId', async (req, res, next) => {
   }
 })
 
+router.post('/cart/:filmId', async (req, res, next) => {
+  if (req.user) {
+    try {
+      let order = await Order.findOne({
+        where: {
+          userId: req.user.dataValues.id,
+          purchased: false
+        }
+      })
+      if (!order) {
+        order = Order.create({
+          purchased: false,
+          userId: req.user.dataValues.id
+        })
+      }
+      const cartItem = await Order_Film.findOne({
+        where: {
+          orderId: order.id,
+          filmId: req.params.filmId
+        }
+      })
+      if (cartItem) {
+        const obj = await cartItem.update({
+          quantity: cartItem.quantity + req.body.quantity
+        })
+        res.status(200).json(obj)
+      } else {
+        const film = await Film.findByPk(req.params.filmId)
+        const obj = await Order_Film.create({
+          quantity: req.body.quantity,
+          price: film.price,
+          orderId: order.id,
+          filmId: req.params.filmId
+        })
+        res.status(200).json(obj)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 module.exports = router
