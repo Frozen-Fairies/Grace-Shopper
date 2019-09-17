@@ -20,7 +20,7 @@ const Menu = () => (
       <Link
         to={`/movies/${genre}`}
         key={id}
-        onClick={store.dispatch(selectGenre(genre))}
+        onClick={() => store.dispatch(selectGenre(genre))}
       />
     ))}
   </div>

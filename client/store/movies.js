@@ -16,7 +16,7 @@ const getMovies = movies => ({
 export const getAllMoviesThunk = genre => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/movies/${genre}`)
+      const {data} = await Axios.get(`/api/films/genres/${genre}`)
       dispatch(getMovies(data))
     } catch (error) {
       console.log('error with movies')

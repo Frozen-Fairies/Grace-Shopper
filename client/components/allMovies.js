@@ -4,18 +4,18 @@ import {connect} from 'react-redux'
 import SingleMovie from './singleMovie'
 
 class DisconnectedAllMovies extends React.Component {
-  componentDidMount() {
-    this.props.getMovies(this.props.selectedGenre)
-  }
+  //   componentDidMount() {
+  //     this.props.getMovies(this.props.selectedGenre)
+  //   }
 
   render() {
     return (
       <div>
-        <ul>
+        {/* <ul>
           {this.props.movies.map(movie => {
             return <SingleMovie key={movie.id} movie={movie} />
           })}
-        </ul>
+        </ul> */}
       </div>
     )
   }
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const AllMovies = connect(mapStateToProps)(mapDispatchToProps)(
-  DisconnectedAllMovies
-)
-export default AllMovies
+// const AllMovies = connect(mapStateToProps)(mapDispatchToProps)(
+//   DisconnectedAllMovies
+// )
+export default DisconnectedAllMovies
