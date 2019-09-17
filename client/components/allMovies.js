@@ -4,9 +4,9 @@ import {connect} from 'react-redux'
 import SingleMovie from './singleMovie'
 
 class DisconnectedAllMovies extends React.Component {
-  //   componentDidMount() {
-  //     this.props.getMovies(this.props.selectedGenre)
-  //   }
+  componentDidMount() {
+    this.props.getMovies(this.props.selectedGenre)
+  }
 
   render() {
     return (
@@ -36,4 +36,8 @@ const mapDispatchToProps = dispatch => {
 // const AllMovies = connect(mapStateToProps)(mapDispatchToProps)(
 //   DisconnectedAllMovies
 // )
-export default DisconnectedAllMovies
+const AllMovies = connect(mapStateToProps, mapDispatchToProps)(
+  DisconnectedAllMovies
+)
+
+export default AllMovies

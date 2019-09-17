@@ -17,11 +17,18 @@ const genres = [
 const Menu = () => (
   <div>
     {genres.map((genre, id) => (
-      <Link
-        to={`/movies/${genre}`}
-        key={id}
-        onClick={() => store.dispatch(selectGenre(genre))}
-      />
+      <div key={id}>
+        <Link
+          to={`/movies/${genre}`}
+          onClick={() =>
+            store.dispatch(
+              selectGenre(genre[0].toUpperCase() + genre.slice(1).toLowerCase())
+            )
+          }
+        >
+          {genre}
+        </Link>
+      </div>
     ))}
   </div>
 
