@@ -140,4 +140,25 @@ router.post('/cart/:filmId', async (req, res, next) => {
   }
 })
 
+router.put('/cart/:cartId/checkout', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const order = await Order.findByPk(req.params.cartId)
+      if (
+        order.userId === req.user.dataValues.id &&
+        order.purchased === false
+      ) {
+        const obj = await order.update({purchased: true})
+        res.status(200).json(obj)
+      } else {
+        res.sendStatus(500)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 module.exports = router
