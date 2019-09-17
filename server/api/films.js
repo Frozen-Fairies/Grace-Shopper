@@ -108,7 +108,11 @@ router.get('/tags/:tagName/page/:pageNum', async (req, res, next) => {
 
 router.get('/:filmId', async (req, res, next) => {
   try {
-    const film = await Film.findByPk(req.params.filmId)
+    const film = await Film.findOne({
+      where: {
+        uniqueId: req.params.filmId
+      }
+    })
     res.json(film)
   } catch (err) {
     next(err)
