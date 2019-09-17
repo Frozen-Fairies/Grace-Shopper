@@ -9,13 +9,14 @@ const getMovies = movies => ({
 
 const inititalState = {
   allMovies: [],
+  selectedGenre: '',
   selectedMovie: {}
 }
 
-export const getAllMoviesThunk = () => {
+export const getAllMoviesThunk = genre => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get('/api/movies')
+      const {data} = await Axios.get(`/api/movies/${genre}`)
       dispatch(getMovies(data))
     } catch (error) {
       console.log('error with movies')
