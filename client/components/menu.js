@@ -18,7 +18,7 @@ const genres = [
 class DisconnectedMenu extends React.Component {
   render() {
     return (
-      <div>
+      <div id="categories">
         {genres.map((genre, id) => (
           <div key={id}>
             <Link

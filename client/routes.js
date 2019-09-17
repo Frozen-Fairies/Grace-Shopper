@@ -18,9 +18,11 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          {/* <Route exact path="/" component={AllMovies} /> */}
+          <Route path="/" component={AllMovies} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           {/* {isLoggedIn && ( */}
@@ -33,11 +35,12 @@ class Routes extends Component {
               component={AllMovies}
             />
           </Switch>
-        </BrowserRouter>
-        {/* )} */}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-      </Switch>
+
+          {/* )} */}
+          {/* Displays our Login component as a fallback */}
+          <Route component={Login} />
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
