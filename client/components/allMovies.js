@@ -5,17 +5,20 @@ import SingleMovie from './singleMovie'
 
 class DisconnectedAllMovies extends React.Component {
   componentDidMount() {
-    this.props.getMovies(this.props.selectedGenre)
+    // console.log(this.props.match)
+    const genre = this.props.match.params.genre
+    console.log(genre)
+    this.props.getMovies(genre[0].toUpperCase() + genre.slice(1).toLowerCase())
   }
 
   render() {
     return (
       <div>
-        {/* <ul>
+        <ul>
           {this.props.movies.map(movie => {
             return <SingleMovie key={movie.id} movie={movie} />
           })}
-        </ul> */}
+        </ul>
       </div>
     )
   }
@@ -23,8 +26,8 @@ class DisconnectedAllMovies extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.allMovies,
-    selectedGenre: state.selectedGenre
+    movies: state.movies.allMovies,
+    selectedGenre: state.movies.selectedGenre
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -33,9 +36,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-// const AllMovies = connect(mapStateToProps)(mapDispatchToProps)(
-//   DisconnectedAllMovies
-// )
 const AllMovies = connect(mapStateToProps, mapDispatchToProps)(
   DisconnectedAllMovies
 )

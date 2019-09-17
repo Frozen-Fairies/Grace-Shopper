@@ -5,6 +5,12 @@ const inititalState = {
   selectedGenre: '',
   selectedMovie: {}
 }
+const SELECT_GENRE = 'SELECT_GENRE'
+
+export const selectGenre = genre => ({
+  type: SELECT_GENRE,
+  genre
+})
 
 const GET_ALL_MOVIES = 'GET_ALL_MOVIES'
 
@@ -17,19 +23,13 @@ export const getAllMoviesThunk = genre => {
   return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/films/genres/${genre}`)
+      dispatch(selectGenre(genre))
       dispatch(getMovies(data))
     } catch (error) {
       console.log('error with movies')
     }
   }
 }
-
-const SELECT_GENRE = 'SELECT_GENRE'
-
-export const selectGenre = genre => ({
-  type: SELECT_GENRE,
-  genre
-})
 
 const moviesReducer = (state = inititalState, action) => {
   switch (action.type) {
