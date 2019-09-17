@@ -4,14 +4,14 @@ import store from '../store'
 import {selectGenre} from '../store/movies'
 
 const genres = [
-  'All Movies',
-  'Action',
-  'Comedy',
-  'Horror',
-  'Drama',
-  'Romance',
-  'Thriller',
-  'Science Fiction'
+  'all',
+  'action',
+  'comedy',
+  'horror',
+  'drama',
+  'romance',
+  'thriller',
+  'scifi'
 ]
 
 const Menu = () => (

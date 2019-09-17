@@ -25,8 +25,8 @@ class Routes extends Component {
         {/* {isLoggedIn && ( */}
         <Switch>
           {/* Routes placed here are only available after logging in */}
-          <Route path="/" component={AllMovies} />
-          <Route path={`/movies/${this.props.genre}`} component={AllMovies} />
+          {/* <Route path="/" component={AllMovies} />
+          <Route path={`/movies/${this.props.genre}`} component={AllMovies} /> */}
         </Switch>
         {/* )} */}
         {/* Displays our Login component as a fallback */}
