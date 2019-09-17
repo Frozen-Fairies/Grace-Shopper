@@ -2,6 +2,7 @@ const router = require('express').Router()
 const Film = require('../db/models/film')
 const Sequelize = require('sequelize')
 const Order = require('../db/models/order')
+const Order_Film = require('../db/models/orderFilm')
 
 // Gets all previous orders
 router.get('/history', async (req, res, next) => {
@@ -61,6 +62,32 @@ router.delete('/cart/:filmId', async (req, res, next) => {
 
       await cartItem.removeFilm(film)
       res.sendStatus(204)
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
+router.put('/cart/:filmId', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const orderId = await Order.findOne({
+        where: {
+          userId: req.user.dataValues.id,
+          purchased: false
+        }
+      }).id
+      const cartItem = await Order_Film.findOne({
+        where: {
+          orderId,
+          filmId: req.params.filmId
+        }
+      })
+      const obj = await cartItem.update({quantity: req.body.quantity})
+
+      res.status(200).json(obj)
     } catch (error) {
       next(error)
     }
