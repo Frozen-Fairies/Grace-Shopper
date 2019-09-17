@@ -13,7 +13,7 @@ class DisconnectedAllMovies extends React.Component {
       <div>
         <ul>
           {this.props.movies.map(movie => {
-            return <SingleMovie key={movie.id} props={movie} />
+            return <SingleMovie key={movie.id} movie={movie} />
           })}
         </ul>
       </div>
@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    getMovies: () => dispatch(getAllMoviesThunk())
+    getMovies: genre => dispatch(getAllMoviesThunk(genre))
   }
 }
 
