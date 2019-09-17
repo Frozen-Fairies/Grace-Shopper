@@ -1,7 +1,14 @@
 import React from 'react'
-import {connect} from 'react-redux'
 
-const DisconnectedSingleMovie = props => {
-  // return (
-  // )
+const SingleMovie = props => {
+  const {movie} = props
+  return (
+    <div>
+      <h1>{movie.title}</h1>
+      <img src={movie.imageUrl} />
+      <p>{movie.price}</p>
+    </div>
+  )
 }
+
+export default SingleMovie
