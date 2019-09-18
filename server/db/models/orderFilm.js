@@ -4,7 +4,7 @@ const db = require('../db')
 
 const Order_Film = db.define('order_film', {
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   quantity: {
