@@ -34,21 +34,21 @@ const Film = db.define('film', {
     defaultValue: 0
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   compareAtPrice: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
     // ADD validation that this is greater than price
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     defaultValue:
       'http://www.piercevaubel.com/cam/images/fairycatanthbullv19n4feb251888lp062-backcover-small.jpg'
   },
   imageAltText: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     defaultValue: ''
   },

@@ -4,7 +4,7 @@ const db = require('../db')
 
 const Order = db.define('order', {
   address: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   purchased: {
     type: Sequelize.BOOLEAN,
