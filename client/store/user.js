@@ -11,7 +11,10 @@ const REMOVE_USER = 'REMOVE_USER'
  * INITIAL STATE
  */
 const defaultUser = {
-  isLoggedIn: 0
+  isLoggedIn: 0,
+  name: 'Guest',
+  displayName: 'Guest',
+  error: null
 }
 
 /**
