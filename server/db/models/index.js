@@ -1,6 +1,6 @@
 const User = require('./user')
 const Film = require('./film')
-const Cart = require('./cart')
+// const Cart = require('./cart')
 const Order = require('./order')
 const Order_Film = require('./orderFilm')
 
@@ -11,8 +11,8 @@ const Order_Film = require('./orderFilm')
  *    BlogPost.belongsTo(User)
  */
 
-Cart.belongsTo(User)
-User.hasMany(Cart)
+// Cart.belongsTo(User)
+// User.hasMany(Cart)
 
 Order.belongsTo(User)
 User.hasMany(Order)
@@ -29,7 +29,6 @@ Order.belongsToMany(Film, {through: Order_Film})
 module.exports = {
   User,
   Film,
-  Cart,
   Order,
   Order_Film
 }
