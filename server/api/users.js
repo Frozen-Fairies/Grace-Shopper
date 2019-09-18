@@ -3,15 +3,37 @@ const {User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email']
-    })
-    res.json(users)
-  } catch (err) {
-    next(err)
+  if (req.user) {
+    try {
+      const user = await User.findByPk(req.user.dataValues.id)
+      res.json(user)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const user = await User.findByPk(req.user.dataValues.id)
+      if (user) {
+        const obj = user.update({
+          name: req.body.name,
+          email: req.body.email,
+          address: req.body.address,
+          password: req.body.password
+        })
+        res.status(200).json(obj)
+      } else {
+        res.sendStatus(500)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
   }
 })
