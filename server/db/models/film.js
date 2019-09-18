@@ -12,7 +12,7 @@ const Film = db.define('film', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   description: {
@@ -68,6 +68,7 @@ Film.beforeValidate(film => {
     film.uniqueId = film.title
       .replace(/\s/g, '_')
       .replace(/\W/g, '')
+      .replace(/_/g, '-')
       .toLowerCase()
   }
 })
