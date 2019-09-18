@@ -18,29 +18,27 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <BrowserRouter>
+      <Switch>
+        {/* Routes placed here are available to all visitors */}
+        {/* <Route exact path="/" component={AllMovies} /> */}
+        <Route exact path="/" component={AllMovies} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        {/* {isLoggedIn && ( */}
         <Switch>
-          {/* Routes placed here are available to all visitors */}
-          {/* <Route exact path="/" component={AllMovies} /> */}
-          <Route path="/" component={AllMovies} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          {/* {isLoggedIn && ( */}
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
+          {/* Routes placed here are only available after logging in */}
 
-            <Route
-              // path={`/movies/${this.props.selectedGenre}`}
-              path="/movies/:genre"
-              component={AllMovies}
-            />
-          </Switch>
-
-          {/* )} */}
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
+          <Route
+            // path={`/movies/${this.props.selectedGenre}`}
+            path="/movies/:genre"
+            component={AllMovies}
+          />
         </Switch>
-      </BrowserRouter>
+
+        {/* )} */}
+        {/* Displays our Login component as a fallback */}
+        <Route component={Login} />
+      </Switch>
     )
   }
 }

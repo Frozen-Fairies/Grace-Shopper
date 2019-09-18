@@ -11,7 +11,6 @@ const App = () => {
       <Navbar />
       <Menu />
       <Routes />
-
       <Footer />
     </div>
   )

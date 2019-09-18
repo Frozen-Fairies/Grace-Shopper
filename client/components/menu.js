@@ -1,11 +1,14 @@
 import React from 'react'
 import {Link, BrowserRouter} from 'react-router-dom'
 import store from '../store'
-import {selectGenre, getAllMoviesThunk} from '../store/movies'
+import {
+  selectGenre,
+  getAllMoviesThunk,
+  getFeaturedMoviesThunk
+} from '../store/movies'
 import {connect} from 'react-redux'
 
 const genres = [
-  'all',
   'action',
   'comedy',
   'horror',
@@ -19,6 +22,12 @@ class DisconnectedMenu extends React.Component {
   render() {
     return (
       <div id="categories">
+        <Link
+          to="/movies/all"
+          onClick={() => store.dispatch(getFeaturedMoviesThunk())}
+        >
+          all
+        </Link>
         {genres.map((genre, id) => (
           <div key={id}>
             <Link
