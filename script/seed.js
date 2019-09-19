@@ -209,7 +209,7 @@ const films = [
     price: 1099,
     compareAtPrice: null,
     imageUrl:
-      'https://m.media-amazon.com/images/I/91tAfJbWnEL._AC_UY436_FMwebp_QL65_.jpg',
+      'https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_.jpg',
     imageAltText: 'Crazy Rich Asians',
     releaseDate: '2018-02-16',
     tags: ['Singapore', 'New York'],

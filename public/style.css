@@ -26,3 +26,8 @@ ul {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+img {
+  min-height: 500px;
+  min-width: 300px;
+}
