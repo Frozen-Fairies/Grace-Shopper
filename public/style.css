@@ -27,6 +27,12 @@ ul {
   flex-wrap: wrap;
 }
 
+
+img {
+  min-height: 500px;
+  min-width: 300px;
+}
+
 #quantity-input {
   width: 50px;
 }
