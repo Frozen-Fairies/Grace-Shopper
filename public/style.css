@@ -26,3 +26,7 @@ ul {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+#quantity-input {
+  width: 50px;
+}
