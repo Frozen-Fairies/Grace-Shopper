@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
+import SingleMovieView from './components/singleMovieView'
+
 
 /**
  * COMPONENT
@@ -25,7 +27,11 @@ class Routes extends Component {
         <Route exact path="/" component={AllMovies} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+
         <Route exact path="/orders/cart" component={CartView} />
+
+        <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
+
         {/* {isLoggedIn && ( */}
         <Switch>
           {/* Routes placed here are only available after logging in */}
