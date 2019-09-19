@@ -186,69 +186,6 @@ const films = [
   }
 ]
 
-const films = [
-  {
-    uniqueId: 'it-chapter-2',
-    title: 'It Chapter 2',
-    description: 'Really sppoky clown attacks Maine AGAIN!',
-    genre: 'Horror',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  },
-  {
-    uniqueId: 'robocop',
-    title: 'Robocop',
-    description: 'Detroit robo police',
-    genre: 'Action',
-    published: true,
-    inventory: 100,
-    price: 10,
-    compareAtPrice: 10,
-    imageUrl:
-      'https://images-na.ssl-images-amazon.com/images/I/81VLcqueY-L._SY679_.jpg',
-    imageAltText: 'Freeze',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['police', 'detroit', 'movie']
-  },
-  {
-    uniqueId: 'the-incredibles',
-    title: 'The Incredibles',
-    description: 'Family Fun super heros',
-    genre: 'Comedy',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  },
-  {
-    uniqueId: 'it-chapter-2',
-    title: 'It Chapter 2',
-    description: 'Really sppoky clown attacks Maine AGAIN!',
-    genre: 'Horror',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  }
-]
-
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
