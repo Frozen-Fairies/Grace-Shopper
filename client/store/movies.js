@@ -43,6 +43,19 @@ export const getFeaturedMoviesThunk = (genre = 'featured') => {
   }
 }
 
+export const getSingleMovieThunk = (genre, filmId) => {
+  return async dispatch => {
+    try {
+      const {data} = await Axios.get(`/api/films/${filmId}`)
+
+      dispatch(selectGenre(genre))
+      dispatch(getMovies([data]))
+    } catch (error) {
+      console.log('error with movie')
+    }
+  }
+}
+
 const moviesReducer = (state = inititalState, action) => {
   switch (action.type) {
     case GET_ALL_MOVIES:

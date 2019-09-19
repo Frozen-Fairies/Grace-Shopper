@@ -12,7 +12,7 @@ const films = [
     genre: 'Superhero',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -30,7 +30,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 110,
-    price: 11,
+    price: 1199,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -47,7 +47,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMzA2NDkwODAwM15BMl5BanBnXkFtZTgwODk5MTgzMTE@._V1_SY1000_CR0,0,685,1000_AL_.jpg',
@@ -64,7 +64,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -86,7 +86,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTYzOTc2NzU3N15BMl5BanBnXkFtZTcwNjY3MDE3NQ@@._V1_SY1000_CR0,0,640,1000_AL_.jpg',
@@ -103,7 +103,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMGZlNTY1ZWUtYTMzNC00ZjUyLWE0MjQtMTMxN2E3ODYxMWVmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -125,7 +125,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -147,7 +147,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTg1MTY2MjYzNV5BMl5BanBnXkFtZTgwMTc4NTMwNDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -169,7 +169,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -191,8 +191,54 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      email: 'cody@email.com',
+      password: '123',
+      name: 'cody',
+      address: '123 Fake Street'
+    }),
+    User.create({
+      email: 'murphy@email.com',
+      password: '222',
+      name: 'murphy',
+      address: '22 Ocean Street'
+    }),
+    User.create({
+      email: 'bob@email.com',
+      password: '456',
+      name: 'bob',
+      address: '88 Cookie Street'
+    }),
+    User.create({
+      email: 'dan@email.com',
+      password: '888',
+      name: 'dan',
+      address: '21 Jump Street'
+    }),
+    User.create({
+      email: 'paul@email.com',
+      password: '789',
+      name: 'cody',
+      address: '99 Favor Street'
+    }),
+    User.create({
+      email: 'pete@email.com',
+      password: '666',
+      name: 'cody',
+      address: '12 Spring Avenue'
+    }),
+    User.create({
+      email: 'don@email.com',
+      password: '321',
+      name: 'cody',
+      address: '77 Ocean Boulevard'
+    }),
+    User.create({
+      email: 'ray@email.com',
+      password: '111',
+      name: 'cody',
+      address: '11 Water Street'
+    })
   ])
 
   await Promise.all(

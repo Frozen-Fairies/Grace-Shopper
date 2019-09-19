@@ -17,12 +17,12 @@ class DisconnectedAllMovies extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
+      <div className="container is-fluid">
+        <div className="columns is-multiline">
           {this.props.movies.map(movie => {
             return <SingleMovie key={movie.id} movie={movie} />
           })}
-        </ul>
+        </div>
       </div>
     )
   }
