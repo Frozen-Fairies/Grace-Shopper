@@ -12,7 +12,7 @@ const films = [
     genre: 'Superhero',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -30,7 +30,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 110,
-    price: 11,
+    price: 1199,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -47,7 +47,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMzA2NDkwODAwM15BMl5BanBnXkFtZTgwODk5MTgzMTE@._V1_SY1000_CR0,0,685,1000_AL_.jpg',
@@ -64,7 +64,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -86,7 +86,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTYzOTc2NzU3N15BMl5BanBnXkFtZTcwNjY3MDE3NQ@@._V1_SY1000_CR0,0,640,1000_AL_.jpg',
@@ -103,7 +103,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMGZlNTY1ZWUtYTMzNC00ZjUyLWE0MjQtMTMxN2E3ODYxMWVmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -125,7 +125,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -147,7 +147,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTg1MTY2MjYzNV5BMl5BanBnXkFtZTgwMTc4NTMwNDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -169,7 +169,7 @@ const films = [
     genre: 'Action',
     published: true,
     inventory: 100,
-    price: 10,
+    price: 1099,
     compareAtPrice: null,
     imageUrl:
       'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
@@ -186,68 +186,68 @@ const films = [
   }
 ]
 
-const films = [
-  {
-    uniqueId: 'it-chapter-2',
-    title: 'It Chapter 2',
-    description: 'Really sppoky clown attacks Maine AGAIN!',
-    genre: 'Horror',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  },
-  {
-    uniqueId: 'robocop',
-    title: 'Robocop',
-    description: 'Detroit robo police',
-    genre: 'Action',
-    published: true,
-    inventory: 100,
-    price: 10,
-    compareAtPrice: 10,
-    imageUrl:
-      'https://images-na.ssl-images-amazon.com/images/I/81VLcqueY-L._SY679_.jpg',
-    imageAltText: 'Freeze',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['police', 'detroit', 'movie']
-  },
-  {
-    uniqueId: 'the-incredibles',
-    title: 'The Incredibles',
-    description: 'Family Fun super heros',
-    genre: 'Comedy',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  },
-  {
-    uniqueId: 'it-chapter-2',
-    title: 'It Chapter 2',
-    description: 'Really sppoky clown attacks Maine AGAIN!',
-    genre: 'Horror',
-    published: true,
-    inventory: 100,
-    price: 20,
-    compareAtPrice: 20,
-    imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-    imageAltText: 'Sup',
-    releaseDate: now(), // Make sure this isnt stupid
-    tags: ['clown', 'scary', 'maine']
-  }
-]
+// const films = [
+//   {
+//     uniqueId: 'it-chapter-2',
+//     title: 'It Chapter 2',
+//     description: 'Really sppoky clown attacks Maine AGAIN!',
+//     genre: 'Horror',
+//     published: true,
+//     inventory: 100,
+//     price: 2099,
+//     compareAtPrice: 20,
+//     imageUrl:
+//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
+//     imageAltText: 'Sup',
+//     releaseDate: now(), // Make sure this isnt stupid
+//     tags: ['clown', 'scary', 'maine']
+//   },
+//   {
+//     uniqueId: 'robocop',
+//     title: 'Robocop',
+//     description: 'Detroit robo police',
+//     genre: 'Action',
+//     published: true,
+//     inventory: 100,
+//     price: 1099,
+//     compareAtPrice: 10,
+//     imageUrl:
+//       'https://images-na.ssl-images-amazon.com/images/I/81VLcqueY-L._SY679_.jpg',
+//     imageAltText: 'Freeze',
+//     releaseDate: now(), // Make sure this isnt stupid
+//     tags: ['police', 'detroit', 'movie']
+//   },
+//   {
+//     uniqueId: 'the-incredibles',
+//     title: 'The Incredibles',
+//     description: 'Family Fun super heros',
+//     genre: 'Comedy',
+//     published: true,
+//     inventory: 100,
+//     price: 2099,
+//     compareAtPrice: 20,
+//     imageUrl:
+//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
+//     imageAltText: 'Sup',
+//     releaseDate: now(), // Make sure this isnt stupid
+//     tags: ['clown', 'scary', 'maine']
+//   },
+//   {
+//     uniqueId: 'it-chapter-2',
+//     title: 'It Chapter 2',
+//     description: 'Really sppoky clown attacks Maine AGAIN!',
+//     genre: 'Horror',
+//     published: true,
+//     inventory: 100,
+//     price: 2099,
+//     compareAtPrice: 20,
+//     imageUrl:
+//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
+//     imageAltText: 'Sup',
+//     releaseDate: now(), // Make sure this isnt stupid
+//     tags: ['clown', 'scary', 'maine']
+//   }
+// ]
 
 async function seed() {
   await db.sync({force: true})
