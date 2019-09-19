@@ -186,76 +186,59 @@ const films = [
   }
 ]
 
-// const films = [
-//   {
-//     uniqueId: 'it-chapter-2',
-//     title: 'It Chapter 2',
-//     description: 'Really sppoky clown attacks Maine AGAIN!',
-//     genre: 'Horror',
-//     published: true,
-//     inventory: 100,
-//     price: 2099,
-//     compareAtPrice: 20,
-//     imageUrl:
-//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-//     imageAltText: 'Sup',
-//     releaseDate: now(), // Make sure this isnt stupid
-//     tags: ['clown', 'scary', 'maine']
-//   },
-//   {
-//     uniqueId: 'robocop',
-//     title: 'Robocop',
-//     description: 'Detroit robo police',
-//     genre: 'Action',
-//     published: true,
-//     inventory: 100,
-//     price: 1099,
-//     compareAtPrice: 10,
-//     imageUrl:
-//       'https://images-na.ssl-images-amazon.com/images/I/81VLcqueY-L._SY679_.jpg',
-//     imageAltText: 'Freeze',
-//     releaseDate: now(), // Make sure this isnt stupid
-//     tags: ['police', 'detroit', 'movie']
-//   },
-//   {
-//     uniqueId: 'the-incredibles',
-//     title: 'The Incredibles',
-//     description: 'Family Fun super heros',
-//     genre: 'Comedy',
-//     published: true,
-//     inventory: 100,
-//     price: 2099,
-//     compareAtPrice: 20,
-//     imageUrl:
-//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-//     imageAltText: 'Sup',
-//     releaseDate: now(), // Make sure this isnt stupid
-//     tags: ['clown', 'scary', 'maine']
-//   },
-//   {
-//     uniqueId: 'it-chapter-2',
-//     title: 'It Chapter 2',
-//     description: 'Really sppoky clown attacks Maine AGAIN!',
-//     genre: 'Horror',
-//     published: true,
-//     inventory: 100,
-//     price: 2099,
-//     compareAtPrice: 20,
-//     imageUrl:
-//       'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg',
-//     imageAltText: 'Sup',
-//     releaseDate: now(), // Make sure this isnt stupid
-//     tags: ['clown', 'scary', 'maine']
-//   }
-// ]
-
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      email: 'cody@email.com',
+      password: '123',
+      name: 'cody',
+      address: '123 Fake Street'
+    }),
+    User.create({
+      email: 'murphy@email.com',
+      password: '222',
+      name: 'murphy',
+      address: '22 Ocean Street'
+    }),
+    User.create({
+      email: 'bob@email.com',
+      password: '456',
+      name: 'bob',
+      address: '88 Cookie Street'
+    }),
+    User.create({
+      email: 'dan@email.com',
+      password: '888',
+      name: 'dan',
+      address: '21 Jump Street'
+    }),
+    User.create({
+      email: 'paul@email.com',
+      password: '789',
+      name: 'cody',
+      address: '99 Favor Street'
+    }),
+    User.create({
+      email: 'pete@email.com',
+      password: '666',
+      name: 'cody',
+      address: '12 Spring Avenue'
+    }),
+    User.create({
+      email: 'don@email.com',
+      password: '321',
+      name: 'cody',
+      address: '77 Ocean Boulevard'
+    }),
+    User.create({
+      email: 'ray@email.com',
+      password: '111',
+      name: 'cody',
+      address: '11 Water Street'
+    })
   ])
 
   await Promise.all(
