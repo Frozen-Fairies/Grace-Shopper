@@ -10,12 +10,7 @@ const REMOVE_USER = 'REMOVE_USER'
 /**
  * INITIAL STATE
  */
-const defaultUser = {
-  isLoggedIn: 0,
-  name: 'Guest',
-  displayName: 'Guest',
-  error: null
-}
+const defaultUser = {}
 
 /**
  * ACTION CREATORS
@@ -38,12 +33,14 @@ export const me = () => async dispatch => {
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
+    console.log(method)
     res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
 
   try {
+    console.log(res.data)
     dispatch(getUser(res.data))
     history.push('/')
   } catch (dispatchOrHistoryErr) {
