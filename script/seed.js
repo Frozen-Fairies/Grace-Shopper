@@ -5,11 +5,10 @@ const {User, Film} = require('../server/db/models')
 
 const films = [
   {
-    uniqueId: 'iron-man',
     title: 'Iron Man',
     description:
       'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.',
-    genre: 'Superhero',
+    genre: 'Action',
     published: true,
     inventory: 100,
     price: 1099,
@@ -23,7 +22,6 @@ const films = [
     updatedAt: '2019-09-17T16:04:18.792Z'
   },
   {
-    uniqueId: 'guardians-of-the-galaxy',
     title: 'Guardians of the Galaxy',
     description:
       'A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.',
@@ -183,6 +181,108 @@ const films = [
     ],
     createdAt: '2019-09-17T16:04:18.792Z',
     updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'Twilight',
+    description:
+      "Bella Swan (Kristen Stewart) doesn't expect much when she moves to the small town of Forks, Washington, until she meets the mysterious and handsome Edward Cullen (Robert Pattinson)- a boy who's hiding a dark secret: he's a vampire.",
+    genre: 'Romance',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://i.pinimg.com/originals/c6/10/2b/c6102b117162daef00f671a75cb194ef.jpg',
+    imageAltText: 'Twilight',
+    releaseDate: '2018-02-16',
+    tags: ['vampire', 'Kristen Stewart'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'Crazy Rich Asians',
+    description:
+      'Native New Yorker Rachel Chu accompanies her boyfriend to his best friend’s wedding in Singapore and meets his family for the first time.',
+    genre: 'Romance',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://m.media-amazon.com/images/I/91tAfJbWnEL._AC_UY436_FMwebp_QL65_.jpg',
+    imageAltText: 'Crazy Rich Asians',
+    releaseDate: '2018-02-16',
+    tags: ['Singapore', 'New York'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'It 2',
+    description:
+      "Defeated by members of the Losers' Club, the evil clown Pennywise returns 27 years later to terrorize the town of Derry, Maine, once again. Now adults, the childhood friends have long since gone their separate ways.",
+    genre: 'Horror',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://m.media-amazon.com/images/M/MV5BYTJlNjlkZTktNjEwOS00NzI5LTlkNDAtZmEwZDFmYmM2MjU2XkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
+    imageAltText: 'It 2',
+    releaseDate: '2018-02-16',
+    tags: ['clowns', 'James McAvoy', 'Jessica Chastain'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'The Ring',
+    description:
+      'It begins as just another urban legend - the whispered tale of a nightmarish videotape that causes anyone who watches it to die seven days later.',
+    genre: 'Horror',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/3/37/Theringpostere.jpg',
+    imageAltText: 'The Ring',
+    releaseDate: '2018-02-16',
+    tags: ['Naomi Watts', 'Brian Cox'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'The Grudge',
+    description:
+      'An American nurse living and working in Tokyo is exposed to a mysterious supernatural curse, one that locks a person in a powerful rage before claiming their life and spreading to another victim.',
+    genre: 'Horror',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://m.media-amazon.com/images/M/MV5BMjIxODg1Nzc3NF5BMl5BanBnXkFtZTcwMjM0MjEzMw@@._V1_.jpg',
+    imageAltText: 'The Grudge',
+    releaseDate: '2018-02-16',
+    tags: ['grudge', 'scary'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
+  },
+  {
+    title: 'Eternal Sunshine Of The Spotless Mind',
+    description:
+      'When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories.',
+    genre: 'Romance',
+    published: true,
+    inventory: 100,
+    price: 1099,
+    compareAtPrice: null,
+    imageUrl:
+      'https://m.media-amazon.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
+    imageAltText: 'Eternal Sunshine Of The Spotless Mind',
+    releaseDate: '2018-02-16',
+    tags: ['Kate Winslet', 'Jim Carey'],
+    createdAt: '2019-09-17T16:04:18.792Z',
+    updatedAt: '2019-09-17T16:04:18.792Z'
   }
 ]
 
@@ -218,25 +318,25 @@ async function seed() {
     User.create({
       email: 'paul@email.com',
       password: '789',
-      name: 'cody',
+      name: 'paul',
       address: '99 Favor Street'
     }),
     User.create({
       email: 'pete@email.com',
       password: '666',
-      name: 'cody',
+      name: 'pete',
       address: '12 Spring Avenue'
     }),
     User.create({
       email: 'don@email.com',
       password: '321',
-      name: 'cody',
+      name: 'don',
       address: '77 Ocean Boulevard'
     }),
     User.create({
       email: 'ray@email.com',
       password: '111',
-      name: 'cody',
+      name: 'ray',
       address: '11 Water Street'
     })
   ])
