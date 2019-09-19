@@ -119,7 +119,7 @@ router.post('/cart/:filmId', async (req, res, next) => {
       })
       if (cartItem) {
         const obj = await cartItem.update({
-          quantity: cartItem.quantity + req.body.quantity
+          quantity: cartItem.quantity + parseInt(req.body.quantity)
         })
         res.status(200).json(obj)
       } else {

@@ -46,10 +46,12 @@ export const fetchCart = () => {
   }
 }
 
-export const addToCartThunk = item => {
+export const addToCartThunk = (id, quantity) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/orders/cart/${item.id}`, item)
+      const {data} = await axios.post(`/api/orders/cart/${id}`, {
+        quantity: quantity
+      })
       dispatch(addToCart(data))
     } catch (error) {
       console.log(error)
