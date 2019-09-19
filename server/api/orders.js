@@ -35,7 +35,12 @@ router.get('/cart', async (req, res, next) => {
           userId: req.user.dataValues.id
         }
       })
-      res.json(cart)
+      const cartFilms = await Order_Film.findAll({
+        where: {
+          orderId: cart.dataValues.id
+        }
+      })
+      res.json(cartFilms)
     } catch (err) {
       next(err)
     }

@@ -7,6 +7,7 @@ import {
   getFeaturedMoviesThunk
 } from '../store/movies'
 import {connect} from 'react-redux'
+import {fetchCart} from '../store/cart'
 
 const genres = [
   'action',
@@ -19,6 +20,10 @@ const genres = [
 ]
 
 class DisconnectedMenu extends React.Component {
+  componentDidMount() {
+    this.props.fetchCart()
+  }
+
   render() {
     return (
       <div id="categories">
@@ -64,6 +69,18 @@ class DisconnectedMenu extends React.Component {
 //   return {state: state}
 // }
 
-export default connect()(DisconnectedMenu)
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.cart
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCart: () => dispatch(fetchCart())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisconnectedMenu)
 
 // export default Menu
