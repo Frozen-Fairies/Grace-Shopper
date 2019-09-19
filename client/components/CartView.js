@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchCart} from '../store/user'
+import {fetchCart} from '../store/cart'
 
 class CartView extends React.Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class CartView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.user.cart
+    cart: state.cart.cart
   }
 }
 
