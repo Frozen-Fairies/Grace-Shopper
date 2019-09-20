@@ -9,12 +9,18 @@ class CartView extends React.Component {
   }
 
   render() {
+    console.log(this.props, 'THIS IS PROPS IN CARTVIEW')
+    // const films = this.props.cart[0].films
     return (
       <div>
         <ul>
-          {this.props.cart.map(item => {
-            return <CartItem key={item.id} item={item} />
-          })}
+          {this.props.cart.length > 0 ? (
+            this.props.cart.map(item => {
+              return <CartItem key={item.id} item={item} />
+            })
+          ) : (
+            <i className="far fa-hand-middle-finger" />
+          )}
         </ul>
       </div>
     )

@@ -39,7 +39,7 @@ export const fetchCart = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orders/cart')
-      dispatch(getCart([data]))
+      dispatch(getCart(data))
     } catch (error) {
       console.log(error)
     }
@@ -74,7 +74,7 @@ export const updateCartThunk = item => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/orders/cart/${item.id}`, item)
-      dispatch(updateCart(item))
+      dispatch(updateCart(data))
     } catch (error) {
       console.log(error)
     }
