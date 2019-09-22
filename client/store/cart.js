@@ -10,6 +10,7 @@ const defaultCart = {
 // ACTION TYPES
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 
@@ -22,6 +23,11 @@ const getCart = cart => ({
 const addToCart = item => ({
   type: ADD_TO_CART,
   item
+})
+
+export const addToGuestCart = cart => ({
+  type: ADD_TO_GUEST_CART,
+  cart
 })
 
 const removeFromCart = item => ({
@@ -105,6 +111,9 @@ export default function(state = defaultCart, action) {
         }
       })
       return {...state, cart: updatedCart}
+    case ADD_TO_GUEST_CART:
+      console.log('THIS IS ADD TO GUEST CART REDUCER')
+      return {...state, cart: action.cart}
     default:
       return state
   }

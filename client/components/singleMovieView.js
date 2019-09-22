@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getSingleMovieThunk} from '../store/movies'
-import {addToCartThunk} from '../store/cart'
+import {addToCartThunk, addToGuestCart} from '../store/cart'
 
 class DisconnectedSingleMovieView extends React.Component {
   componentDidMount() {
@@ -12,6 +12,25 @@ class DisconnectedSingleMovieView extends React.Component {
     )
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
+    let newCartProps = []
+    for (let j = 0; j < this.props.cart.length; j++) {
+      if (this.props.cart[j].orderId) {
+        newCartProps.push(this.props.cart[j])
+      }
+    }
+    let localStorageCart = []
+    try {
+      localStorageCart = JSON.parse(window.localStorage.cart)
+    } catch (error) {
+      console.log(error)
+    }
+    for (let i = 0; i < localStorageCart.length; i++) {
+      if (!localStorageCart[i].orderId) {
+        newCartProps.push(localStorageCart[i])
+      }
+    }
+    this.props.addToGuestCart(newCartProps)
+    console.log(this.props.user.id, 'THIS IS USER.ID')
   }
 
   async handleAddToCart(event) {
@@ -22,7 +41,17 @@ class DisconnectedSingleMovieView extends React.Component {
     } else {
       quantity = this.state.quantity
     }
-    await this.props.addToCart(this.props.movies[0].id, quantity)
+    if (this.props.user.id) {
+      await this.props.addToCart(this.props.movies[0].id, quantity)
+    } else {
+      this.props.cart.push({
+        price: this.props.movies[0].price,
+        quantity: quantity,
+        filmId: this.props.movies[0].id
+      })
+      // console.log(this.props.cart, 'THIS IS CART')
+    }
+    window.localStorage.setItem('cart', JSON.stringify(this.props.cart))
   }
 
   async handleQuantityChange(event) {
@@ -40,6 +69,8 @@ class DisconnectedSingleMovieView extends React.Component {
       return <div>...Loading</div>
     }
     lastTag = movie.tags.pop()
+
+    // console.log(this.props, "THIS IS PROPS")
 
     return (
       <div className="container is-fluid">
@@ -106,13 +137,18 @@ class DisconnectedSingleMovieView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {movies: state.movies.allMovies}
+  return {
+    movies: state.movies.allMovies,
+    user: state.user,
+    cart: state.cart.cart
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
     getSingleMovie: (genre, filmId) =>
       dispatch(getSingleMovieThunk(genre, filmId)),
-    addToCart: (item, quantity) => dispatch(addToCartThunk(item, quantity))
+    addToCart: (item, quantity) => dispatch(addToCartThunk(item, quantity)),
+    addToGuestCart: cart => dispatch(addToGuestCart(cart))
   }
 }
 
