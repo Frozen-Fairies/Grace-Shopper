@@ -60,9 +60,10 @@ export const addToCartThunk = (id, quantity) => {
 }
 
 export const removeFromCartThunk = item => {
+  // console.log(item, 'item in the thunk')
   return async dispatch => {
     try {
-      await axios.delete(`/api/orders/cart/${item.id}`, item)
+      await axios.delete(`/api/orders/cart/${item.filmId}`, item)
       dispatch(removeFromCart(item))
     } catch (error) {
       console.log(error)

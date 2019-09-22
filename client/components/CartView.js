@@ -9,7 +9,7 @@ class CartView extends React.Component {
   }
 
   render() {
-    console.log(this.props, 'THIS IS PROPS IN CARTVIEW')
+    // console.log(this.props, 'THIS IS PROPS IN CARTVIEW')
     // const films = this.props.cart[0].films
     return (
       <div>
