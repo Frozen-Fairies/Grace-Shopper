@@ -16,7 +16,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Logout
           </a>
           <Link to="/orders/cart">
-            <i className="fad fa-shopping-cart" />cart
+            <i className="fad fa-shopping-cart" />Cart
           </Link>
         </div>
       ) : (
@@ -25,7 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/orders/cart">
-            <i className="fad fa-shopping-cart" />cart
+            <i className="fad fa-shopping-cart" />Cart
           </Link>
         </div>
       )}

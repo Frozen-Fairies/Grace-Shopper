@@ -15,14 +15,16 @@ install:
 before_script:
   - psql -c 'create database "FrozenFairyFlix-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: frozenfairyflix
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: nWUme1LrwkaxD2hjj4y9xChqa5NBeylsdPyxMWs1mcpQK4OuEufEnrJeK4DrarJuaaCg72up4boo4mJyFMFdwoacaFQ+J+ViciCrdZudh23jagYg2StTmjUv0aDqE/3VZ7CR+pq+so+eABXTtudn6B+bEzOXKeKxCDdKz/csSJlBUdLJtraRqFVompbSYqtALW99FQOaU6bZDMuM6SGWYi1qLss38vdpRIF0hqTQhF6sWg5sHySTZygWmYmwcVD6W9zcmNiPPXO0E8kJS4ZDjPWEEhfsNK2xyjcVuX3jXGr5AfEr8bAdhmk3utqFx0U53XLxWZoBp24lp79cJ9NaoMDnEZUv0xidzAWkTOk3w0PLMvRnEP12XcgWHAdRbvnY9VmNuX/ae8kmUIVjG6YnPRweCnjisPaA/TsL0UvqHZAwEIszC8TdCFHo/ytNhOvP/+Z4iKqevuxNrGS9thhtjfHMy0P09Ymh+nZDXmv4OY+aVQM/BDpPiZY/u3F8Vik11kerc6rBby+JM3MwPtSNtm6aRz/NoesPqagX73u0b7b+tdhjutcb55bH7m4VbTh6N4b2LK0nMUBG+f+0hvFmTjqYLNxZCS4uMn3kGbL2frGrhvBU429jE7RSP7L6QIvvPVALRlxABwyWnDOU2frp/wEeY0N9XkO8ponfwj4Jazc=
