@@ -31,7 +31,7 @@ class DisconnectedMenu extends React.Component {
           to="/movies/all"
           onClick={() => store.dispatch(getFeaturedMoviesThunk())}
         >
-          all
+          All Movies
         </Link>
         {genres.map((genre, id) => (
           <div key={id}>
@@ -39,13 +39,11 @@ class DisconnectedMenu extends React.Component {
               to={`/movies/${genre}`}
               onClick={() =>
                 store.dispatch(
-                  getAllMoviesThunk(
-                    genre[0].toUpperCase() + genre.slice(1).toLowerCase()
-                  )
+                  getAllMoviesThunk(genre[0].toUpperCase() + genre.slice(1))
                 )
               }
             >
-              {genre}
+              {genre[0].toUpperCase() + genre.slice(1)}
             </Link>
           </div>
         ))}
