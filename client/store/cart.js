@@ -85,7 +85,6 @@ export const addToCartThunk = (id, quantity) => {
 }
 
 export const removeFromCartThunk = item => {
-  // console.log(item, 'item in the thunk')
   return async dispatch => {
     try {
       await axios.delete(`/api/orders/cart/${item.filmId}`, item)
@@ -126,7 +125,7 @@ export default function(state = defaultCart, action) {
           return item
         }
       })
-      // console.log(state.cart, 'THIS IS CART')
+
       return {...state, cart: newCart}
     case UPDATE_CART:
       const updatedCart = state.cart.map(item => {

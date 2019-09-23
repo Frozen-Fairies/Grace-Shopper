@@ -8,10 +8,6 @@ class CartView extends React.Component {
     this.props.fetchCartForCartView()
   }
 
-  // componentDidUpdate() {
-  //   this.props.fetchCart()
-  // }
-
   render() {
     return (
       <div>
