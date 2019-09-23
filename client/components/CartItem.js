@@ -1,17 +1,51 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {removeFromCartThunk, updateCartThunk} from '../store/cart'
+import {connect} from 'react-redux'
+
+// The remove function works but it renders the page empty until you
+// refresh and it is properly connected
+
+// The Update button gets a 500 from the api
 
 const CartItem = props => {
-  console.log(props, 'PROPS')
   const total = props.item.price * props.item.quantity / 100
+  console.log(props, 'THIS IS PROPS')
   return (
     <div>
       {/* <img src={props.item.imageUrl} /> */}
       <p>{props.item.title}</p>
       <p>Total price: {total}</p>
-      <p>Qty: {props.item.quantity}</p>
+      <p>
+        Qty:{' '}
+        <input
+          type="number"
+          name="quantity"
+          min="1"
+          defaultValue={props.item.quantity}
+          id="quantity-input"
+        />{' '}
+        <button type="button" onClick={() => props.updateCartThunk(props.item)}>
+          Update
+        </button>
+      </p>
+      <div>
+        <button
+          type="button"
+          onClick={() => props.removeFromCartThunk(props.item)}
+        >
+          Remove
+        </button>
+      </div>
     </div>
   )
 }
 
-export default CartItem
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromCartThunk: item => dispatch(removeFromCartThunk(item)),
+    updateCartThunk: item => dispatch(updateCartThunk(item))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CartItem)
