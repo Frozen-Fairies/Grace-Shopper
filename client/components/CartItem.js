@@ -1,35 +1,50 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {removeFromCartThunk} from '../store/cart'
+import {removeFromCartThunk, updateCartThunk} from '../store/cart'
 import {connect} from 'react-redux'
 
 // The remove function works but it renders the page empty until you
 // refresh and it is properly connected
 
-// Need to be a class component for quantity change form?
+// The Update button gets a 500 from the api
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
-  // console.log(props.item, 'THIS IS PROPS')
+  console.log(props, 'THIS IS PROPS')
   return (
     <div>
       {/* <img src={props.item.imageUrl} /> */}
       <p>{props.item.title}</p>
       <p>Total price: {total}</p>
-      <p>Qty: {props.item.quantity}</p>
-      <button
-        type="button"
-        onClick={() => props.removeFromCartThunk(props.item)}
-      >
-        Remove
-      </button>
+      <p>
+        Qty:{' '}
+        <input
+          type="number"
+          name="quantity"
+          min="1"
+          defaultValue={props.item.quantity}
+          id="quantity-input"
+        />{' '}
+        <button type="button" onClick={() => props.updateCartThunk(props.item)}>
+          Update
+        </button>
+      </p>
+      <div>
+        <button
+          type="button"
+          onClick={() => props.removeFromCartThunk(props.item)}
+        >
+          Remove
+        </button>
+      </div>
     </div>
   )
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeFromCartThunk: item => dispatch(removeFromCartThunk(item))
+    removeFromCartThunk: item => dispatch(removeFromCartThunk(item)),
+    updateCartThunk: item => dispatch(updateCartThunk(item))
   }
 }
 

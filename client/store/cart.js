@@ -74,7 +74,7 @@ export const removeFromCartThunk = item => {
 export const updateCartThunk = item => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/orders/cart/${item.id}`, item)
+      const {data} = await axios.put(`/api/orders/cart/${item.filmId}`, item)
       dispatch(updateCart(data))
     } catch (error) {
       console.log(error)
@@ -98,7 +98,7 @@ export default function(state = defaultCart, action) {
       return {...state, cart: newCart}
     case UPDATE_CART:
       const updatedCart = state.cart.map(item => {
-        if (item.id === action.item.id) {
+        if (item.id === action.item.filmId) {
           item.quantity = action.item.quantity
           return item
         } else {
