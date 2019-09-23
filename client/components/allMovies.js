@@ -6,7 +6,7 @@ import SingleMovie from './singleMovie'
 class DisconnectedAllMovies extends React.Component {
   componentDidMount() {
     const genre = this.props.match.params.genre
-    if (!genre || genre === 'all') {
+    if (!genre || genre === 'featured') {
       this.props.getFeaturedMovies()
     } else {
       this.props.getMovies(
