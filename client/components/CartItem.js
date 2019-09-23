@@ -10,11 +10,18 @@ import {connect} from 'react-redux'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
-  // console.log(props, 'THIS IS PROPS')
+  console.log(props, 'THIS IS PROPS')
   return (
     <div>
-      {/* <img src={props.item.imageUrl} /> */}
-      <p>{props.item.title}</p>
+      {props.filmInfo ? (
+        <div>
+          {' '}
+          <img src={props.filmInfo.imageUrl} />
+          <p>{props.filmInfo.title}</p>{' '}
+        </div>
+      ) : (
+        'sup'
+      )}
       <p>Total price: {total}</p>
       <form
         onSubmit={evt => {

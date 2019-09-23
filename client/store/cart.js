@@ -4,11 +4,13 @@ import history from '../history'
 
 // INITIAL STATE
 const defaultCart = {
-  cart: []
+  cart: [],
+  filmData: []
 }
 
 // ACTION TYPES
 const GET_CART = 'GET_CART'
+const GET_CART_FOR_CART_VIEW = 'GET_CART_FOR_CART_VIEW'
 const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
@@ -18,6 +20,12 @@ const UPDATE_CART = 'UPDATE_CART'
 const getCart = cart => ({
   type: GET_CART,
   cart
+})
+
+const getCartForCartView = (cart, filmData) => ({
+  type: GET_CART_FOR_CART_VIEW,
+  cart,
+  filmData
 })
 
 const addToCart = item => ({
@@ -46,6 +54,17 @@ export const fetchCart = () => {
     try {
       const {data} = await axios.get('/api/orders/cart')
       dispatch(getCart(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const fetchCartForCartView = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/orders/cart/complete')
+      dispatch(getCartForCartView(data.cartFilms, data.filmInfo))
     } catch (error) {
       console.log(error)
     }
@@ -93,6 +112,12 @@ export default function(state = defaultCart, action) {
   switch (action.type) {
     case GET_CART:
       return {...state, cart: action.cart}
+    case GET_CART_FOR_CART_VIEW:
+      return {
+        ...state,
+        cart: action.cart,
+        filmData: action.filmData
+      }
     case ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}
     case REMOVE_FROM_CART:
