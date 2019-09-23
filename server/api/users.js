@@ -18,11 +18,18 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   if (req.user) {
     try {
+      console.log(User)
       const user = await User.findByPk(req.user.dataValues.id)
-      if (user) {
+      const potentialNewEmail = req.body.email
+      const potentialUser = await User.findOne({
+        where: {email: potentialNewEmail}
+      })
+
+      if (user && potentialUser === null) {
+        // MUST CHECK IF NEW EMAIL IS UNIQUE
         const obj = user.update({
           name: req.body.name,
-          email: req.body.email,
+          email: potentialNewEmail,
           address: req.body.address,
           password: req.body.password
         })

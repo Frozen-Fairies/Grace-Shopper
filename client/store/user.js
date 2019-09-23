@@ -29,6 +29,15 @@ export const me = () => async dispatch => {
     console.error(err)
   }
 }
+export const updateUser = newInfo => async dispatch => {
+  try {
+    const res = await axios.put('/api/users', newInfo)
+    dispatch(me())
+    history.push('/profile')
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export const auth = (email, password, method) => async dispatch => {
   let res

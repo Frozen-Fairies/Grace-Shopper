@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, BrowserRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, Signup, profile} from './components'
 import {me} from './store'
 import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
 import SingleMovieView from './components/singleMovieView'
 import CheckoutSuccsess from './components/CheckoutSuccess'
+import profileUpdate from './components/profileUpdate'
 
 /**
  * COMPONENT
@@ -27,6 +28,8 @@ class Routes extends Component {
         <Route exact path="/" component={AllMovies} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/profile" component={profile} />
+        <Route exact path="/profile/update" component={profileUpdate} />
 
         <Route exact path="/orders/cart" component={CartView} />
         <Route exact path="/orders/cart/success" component={CheckoutSuccsess} />
