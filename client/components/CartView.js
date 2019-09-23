@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchCart} from '../store/cart'
+import {fetchCart, fetchCartForCartView} from '../store/cart'
 
 class CartView extends React.Component {
   componentDidMount() {
-    this.props.fetchCart()
+    this.props.fetchCartForCartView()
   }
 
   // componentDidUpdate() {
@@ -13,15 +13,18 @@ class CartView extends React.Component {
   // }
 
   render() {
-    // console.log(this.props, 'THIS IS PROPS IN CARTVIEW')
-    // const films = this.props.cart[0].films
-
     return (
       <div>
         <ul>
           {this.props.cart.length > 0 ? (
-            this.props.cart.map(item => {
-              return <CartItem key={item.id} item={item} />
+            this.props.cart.map((item, idx) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  filmInfo={this.props.filmData[idx]}
+                />
+              )
             })
           ) : (
             <li>Your cart is empty</li>
@@ -34,13 +37,15 @@ class CartView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    filmData: state.cart.filmData
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    fetchCartForCartView: () => dispatch(fetchCartForCartView())
   }
 }
 
