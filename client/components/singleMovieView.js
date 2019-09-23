@@ -30,7 +30,6 @@ class DisconnectedSingleMovieView extends React.Component {
       }
     }
     this.props.addToGuestCart(newCartProps)
-    console.log(this.props.user.id, 'THIS IS USER.ID')
   }
 
   async handleAddToCart(event) {
@@ -49,7 +48,6 @@ class DisconnectedSingleMovieView extends React.Component {
         quantity: quantity,
         filmId: this.props.movies[0].id
       })
-      // console.log(this.props.cart, 'THIS IS CART')
     }
     window.localStorage.setItem('cart', JSON.stringify(this.props.cart))
   }
@@ -69,8 +67,6 @@ class DisconnectedSingleMovieView extends React.Component {
       return <div>...Loading</div>
     }
     lastTag = movie.tags.pop()
-
-    // console.log(this.props, "THIS IS PROPS")
 
     return (
       <div className="container is-fluid">

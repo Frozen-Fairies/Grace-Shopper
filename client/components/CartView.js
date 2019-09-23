@@ -9,10 +9,6 @@ class CartView extends React.Component {
     //this.checkout = this.checkout.bind(this)
   }
 
-  // componentDidUpdate() {
-  //   this.props.fetchCart()
-  // }
-
   render() {
     console.log(this.props.user.address, 'address is ')
     return (

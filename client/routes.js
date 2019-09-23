@@ -8,6 +8,8 @@ import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
 import OrderHistory from './components/UserOrderHistory'
 import SingleMovieView from './components/singleMovieView'
+import CheckoutSuccess from './components/CheckoutSuccess'
+
 
 /**
  * COMPONENT
@@ -29,7 +31,11 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
 
         <Route exact path="/orders/cart" component={CartView} />
+
         <Route exact path="/orders/history" component={OrderHistory} />
+
+        <Route exact path="/orders/cart/success" component={CheckoutSuccess} />
+
 
         <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
 
