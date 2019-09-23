@@ -49,6 +49,33 @@ router.get('/cart', async (req, res, next) => {
   }
 })
 
+// gets unpurchased order as 'cart', with film data
+router.get('/cart/complete', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const cart = await Order.findOne({
+        include: [{model: Film}],
+        where: {
+          purchased: false,
+          userId: req.user.dataValues.id
+        }
+      })
+
+      const cartFilms = await Order_Film.findAll({
+        where: {
+          orderId: cart.dataValues.id
+        }
+      })
+
+      res.json({cartFilms, filmInfo: cart.films})
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 router.delete('/cart/:filmId', async (req, res, next) => {
   if (req.user) {
     try {
