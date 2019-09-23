@@ -117,6 +117,7 @@ export const checkoutThunk = address => {
     try {
       const {data} = await axios.put(`/api/orders/cart/checkout`, {address})
       dispatch(checkout(data))
+      history.push('/orders/cart/success')
     } catch (error) {
       console.log(error)
     }

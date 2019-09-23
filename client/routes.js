@@ -7,7 +7,7 @@ import {me} from './store'
 import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
 import SingleMovieView from './components/singleMovieView'
-
+import CheckoutSuccsess from './components/CheckoutSuccess'
 
 /**
  * COMPONENT
@@ -29,6 +29,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
 
         <Route exact path="/orders/cart" component={CartView} />
+        <Route exact path="/orders/cart/success" component={CheckoutSuccsess} />
 
         <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
 
