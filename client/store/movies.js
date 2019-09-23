@@ -2,8 +2,7 @@ import Axios from 'axios'
 
 const inititalState = {
   allMovies: [],
-  selectedGenre: '',
-  selectedMovie: {}
+  selectedGenre: ''
 }
 const SELECT_GENRE = 'SELECT_GENRE'
 

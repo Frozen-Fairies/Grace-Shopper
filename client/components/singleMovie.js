@@ -1,11 +1,10 @@
 import React from 'react'
-import {Link, Route, BrowserRouter} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import SingleMovieView from './singleMovieView'
 
 const SingleMovie = props => {
   const {movie} = props
   return (
-
     <div className="column is-one-quarter">
       <Link
         to={`/movies/${movie.genre.slice(0).toLowerCase()}/${movie.uniqueId}`}
@@ -23,7 +22,6 @@ const SingleMovie = props => {
           </div>
         </div>
       </Link>
-
     </div>
   )
 }
