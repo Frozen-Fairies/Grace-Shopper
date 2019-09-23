@@ -1,11 +1,7 @@
 import React from 'react'
 import {Link, BrowserRouter} from 'react-router-dom'
 import store from '../store'
-import {
-  selectGenre,
-  getAllMoviesThunk,
-  getFeaturedMoviesThunk
-} from '../store/movies'
+import {getAllMoviesThunk, getFeaturedMoviesThunk} from '../store/movies'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
 
@@ -28,10 +24,10 @@ class DisconnectedMenu extends React.Component {
     return (
       <div id="categories">
         <Link
-          to="/movies/all"
+          to="/movies/featured"
           onClick={() => store.dispatch(getFeaturedMoviesThunk())}
         >
-          All Movies
+          Featured
         </Link>
         {genres.map((genre, id) => (
           <div key={id}>
@@ -52,21 +48,6 @@ class DisconnectedMenu extends React.Component {
   }
 }
 
-// <div>
-//     <Link to='/'>All Movies</Link>
-//     <Link to='/movies/action'>Action</Link>
-//     <Link>Comedy</Link>
-//     <Link>Drama</Link>
-//     <Link>Horror</Link>
-//     <Link>Romance</Link>
-//     <Link>Thriller</Link>
-//     <Link>Science Fiction</Link>
-// </div>
-
-// const mapStateToProps = state => {
-//   return {state: state}
-// }
-
 const mapStateToProps = state => {
   return {
     cart: state.cart.cart
@@ -80,5 +61,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisconnectedMenu)
-
-// export default Menu
