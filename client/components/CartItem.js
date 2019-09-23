@@ -10,25 +10,34 @@ import {connect} from 'react-redux'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
-  console.log(props, 'THIS IS PROPS')
+  // console.log(props, 'THIS IS PROPS')
   return (
     <div>
       {/* <img src={props.item.imageUrl} /> */}
       <p>{props.item.title}</p>
       <p>Total price: {total}</p>
-      <p>
+      <form
+        onSubmit={evt => {
+          evt.preventDefault()
+          // console.log(props.item, 'props.item')
+          // console.log(evt.target, 'evt.target')
+          const newProps = {
+            ...props.item,
+            quantity: evt.target.quantity_input.value
+          }
+          props.updateCartThunk(newProps)
+        }}
+      >
         Qty:{' '}
         <input
           type="number"
           name="quantity"
           min="1"
           defaultValue={props.item.quantity}
-          id="quantity-input"
+          id="quantity_input"
         />{' '}
-        <button type="button" onClick={() => props.updateCartThunk(props.item)}>
-          Update
-        </button>
-      </p>
+        <button type="submit">Update</button>
+      </form>
       <div>
         <button
           type="button"

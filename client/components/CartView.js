@@ -8,9 +8,14 @@ class CartView extends React.Component {
     this.props.fetchCart()
   }
 
+  // componentDidUpdate() {
+  //   this.props.fetchCart()
+  // }
+
   render() {
     // console.log(this.props, 'THIS IS PROPS IN CARTVIEW')
     // const films = this.props.cart[0].films
+
     return (
       <div>
         <ul>
@@ -19,7 +24,7 @@ class CartView extends React.Component {
               return <CartItem key={item.id} item={item} />
             })
           ) : (
-            <i className="far fa-hand-middle-finger" />
+            <li>Your cart is empty</li>
           )}
         </ul>
       </div>

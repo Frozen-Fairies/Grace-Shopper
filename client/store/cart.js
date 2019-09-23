@@ -97,14 +97,15 @@ export default function(state = defaultCart, action) {
       return {...state, cart: [...state.cart, action.item]}
     case REMOVE_FROM_CART:
       const newCart = state.cart.filter(item => {
-        if (item.id !== action.item.id) {
+        if (item.filmId !== action.item.filmId) {
           return item
         }
       })
+      // console.log(state.cart, 'THIS IS CART')
       return {...state, cart: newCart}
     case UPDATE_CART:
       const updatedCart = state.cart.map(item => {
-        if (item.id === action.item.filmId) {
+        if (item.filmId === action.item.filmId) {
           item.quantity = action.item.quantity
           return item
         } else {
