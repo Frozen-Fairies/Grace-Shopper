@@ -25,11 +25,11 @@ describe('Film model', () => {
       })
 
       it('the slug is correctly generated', () => {
-        expect(film.uniqueId()).to.be.equal('super-fun-movie')
+        expect(film.uniqueId).to.be.equal('super-fun-movie')
       })
 
       it('price is an INT', () => {
-        expect(typeof film.price()).to.be.equal('integer')
+        expect(typeof film.price).to.be.equal('integer')
       })
     })
   })
