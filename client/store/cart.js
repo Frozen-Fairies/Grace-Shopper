@@ -15,6 +15,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
+const CHECKOUT = 'CHECKOUT'
 
 // ACTION CREATOR
 const getCart = cart => ({
@@ -46,6 +47,11 @@ const removeFromCart = item => ({
 const updateCart = item => ({
   type: UPDATE_CART,
   item
+})
+
+const checkout = address => ({
+  type: CHECKOUT,
+  address
 })
 
 // THUNK CREATOR
@@ -106,6 +112,17 @@ export const updateCartThunk = item => {
   }
 }
 
+export const checkoutThunk = address => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/orders/cart/checkout`, {address})
+      dispatch(checkout(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // REDUCER
 export default function(state = defaultCart, action) {
   switch (action.type) {
@@ -140,6 +157,8 @@ export default function(state = defaultCart, action) {
     case ADD_TO_GUEST_CART:
       console.log('THIS IS ADD TO GUEST CART REDUCER')
       return {...state, cart: action.cart}
+    case CHECKOUT:
+      return {...state, cart: []}
     default:
       return state
   }

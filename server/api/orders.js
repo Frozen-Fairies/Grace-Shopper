@@ -102,6 +102,38 @@ router.delete('/cart/:filmId', async (req, res, next) => {
   }
 })
 
+router.put('/cart/checkout', async (req, res, next) => {
+  console.log(req.body.address.address, 'address')
+  if (req.user) {
+    try {
+      const order = await Order.findOne({
+        include: [{model: Film}],
+        where: {
+          purchased: false,
+          userId: req.user.dataValues.id
+        }
+      })
+
+      if (
+        order.userId === req.user.dataValues.id &&
+        order.purchased === false
+      ) {
+        const obj = await order.update({
+          purchased: true,
+          address: req.body.address.address
+        })
+        res.status(200).json(obj)
+      } else {
+        res.sendStatus(500)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 router.put('/cart/:filmId', async (req, res, next) => {
   // console.log(req.user.dataValues.id, 'this is req.user.dataValues.id')
   if (req.user) {
