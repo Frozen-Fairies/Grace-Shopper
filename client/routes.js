@@ -9,7 +9,7 @@ import CartView from './components/CartView'
 import OrderHistory from './components/UserOrderHistory'
 import SingleMovieView from './components/singleMovieView'
 import CheckoutSuccess from './components/CheckoutSuccess'
-
+import Tags from './components/Tags'
 
 /**
  * COMPONENT
@@ -36,7 +36,7 @@ class Routes extends Component {
 
         <Route exact path="/orders/cart/success" component={CheckoutSuccess} />
 
-
+        <Route path="/movies/tags/:tagName" component={Tags} />
         <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
 
         {/* {isLoggedIn && ( */}

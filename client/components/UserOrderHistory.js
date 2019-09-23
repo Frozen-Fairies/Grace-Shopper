@@ -6,8 +6,6 @@ import SingleOrder from './Singleorder'
 class DisconnectedOrderHistory extends React.Component {
   async componentDidMount() {
     await this.props.getOrderHistory()
-
-    console.dir(this.props.orderHistory)
   }
 
   render() {
