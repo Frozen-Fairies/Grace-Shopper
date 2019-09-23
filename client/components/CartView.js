@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchCart, fetchCartForCartView} from '../store/cart'
+import {fetchCart, fetchCartForCartView, checkoutThunk} from '../store/cart'
 
 class CartView extends React.Component {
   componentDidMount() {
     this.props.fetchCartForCartView()
+    //this.checkout = this.checkout.bind(this)
   }
 
   // componentDidUpdate() {
@@ -13,6 +14,7 @@ class CartView extends React.Component {
   // }
 
   render() {
+    console.log(this.props.user.address, 'address is ')
     return (
       <div>
         <ul>
@@ -30,6 +32,27 @@ class CartView extends React.Component {
             <li>Your cart is empty</li>
           )}
         </ul>
+        <div>
+          <form
+            onSubmit={evt => {
+              evt.preventDefault()
+              const newProps = {
+                address: evt.target.address.value
+              }
+              this.props.checkout(newProps)
+            }}
+          >
+            <input
+              type="text"
+              name="address"
+              id="address"
+              defaultValue={this.props.user.address}
+            />
+            <button type="submit">
+              <i className="fad fa-shopping-cart" /> Place Order
+            </button>
+          </form>
+        </div>
       </div>
     )
   }
@@ -38,14 +61,16 @@ class CartView extends React.Component {
 const mapStateToProps = state => {
   return {
     cart: state.cart.cart,
-    filmData: state.cart.filmData
+    filmData: state.cart.filmData,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    fetchCartForCartView: () => dispatch(fetchCartForCartView())
+    fetchCartForCartView: () => dispatch(fetchCartForCartView()),
+    checkout: address => dispatch(checkoutThunk(address))
   }
 }
 
