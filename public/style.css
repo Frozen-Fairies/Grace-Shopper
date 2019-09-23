@@ -27,9 +27,8 @@ ul {
   flex-wrap: wrap;
 }
 
-
 img {
-  min-height: 500px;
+  min-height: 520px;
   min-width: 300px;
 }
 

@@ -87,7 +87,7 @@ const films = [
     price: 1099,
     compareAtPrice: null,
     imageUrl:
-      'https://m.media-amazon.com/images/M/MV5BMTYzOTc2NzU3N15BMl5BanBnXkFtZTcwNjY3MDE3NQ@@._V1_SY1000_CR0,0,640,1000_AL_.jpg',
+      'https://images-na.ssl-images-amazon.com/images/I/51Xp%2B8qDCbL.jpg',
     imageAltText: 'Captain America: The First Avenger',
     releaseDate: '2011-07-22',
     tags: ['Chris Evans', 'Hugo Weaving', 'Samuel L. Jackson', 'Hayley Atwell'],
@@ -343,7 +343,7 @@ const films = [
     price: 1099,
     compareAtPrice: null,
     imageUrl:
-      'https://images-na.ssl-images-amazon.com/images/I/61hYEm-udhL._SY741_.jpg',
+      'https://m.media-amazon.com/images/M/MV5BMTQ1OTU0ODcxMV5BMl5BanBnXkFtZTcwOTMxNTUwOA@@._V1_SY1000_CR0,0,631,1000_AL_.jpg',
     imageAltText: 'Ted',
     releaseDate: '2018-02-16',
     tags: ['Mark Wahlberg', 'Mila Kunis', 'Seth MacFarlane'],
@@ -496,7 +496,7 @@ const films = [
     price: 1099,
     compareAtPrice: null,
     imageUrl:
-      'http://cdn.collider.com/wp-content/uploads/2013/04/the-hangover-part-3-poster-ed-helms-ken-jeong.jpg',
+      'https://m.media-amazon.com/images/M/MV5BMTA0NjE1MzMzODheQTJeQWpwZ15BbWU3MDY4MTQ3Mzk@._V1_SY1000_CR0,0,647,1000_AL_.jpg',
     imageAltText: 'The Hangover Part III',
     releaseDate: '2018-02-16',
     tags: ['Bradley Cooper', 'Zach Galifianakis', 'Ed Helms'],
