@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable no-case-declarations */
 import axios from 'axios'
 import history from '../history'
@@ -5,7 +6,8 @@ import history from '../history'
 // INITIAL STATE
 const defaultCart = {
   cart: [],
-  filmData: []
+  filmData: [],
+  orderHistory: []
 }
 
 // ACTION TYPES
@@ -16,6 +18,7 @@ const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const CHECKOUT = 'CHECKOUT'
+const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY'
 
 // ACTION CREATOR
 const getCart = cart => ({
@@ -52,6 +55,11 @@ const updateCart = item => ({
 const checkout = address => ({
   type: CHECKOUT,
   address
+})
+
+const getOrderHistory = orderHistory => ({
+  type: GET_ORDER_HISTORY,
+  orderHistory
 })
 
 // THUNK CREATOR
@@ -124,6 +132,17 @@ export const checkoutThunk = address => {
   }
 }
 
+export const getOrderHistoryThunk = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/history`)
+      dispatch(getOrderHistory(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // REDUCER
 export default function(state = defaultCart, action) {
   switch (action.type) {
@@ -156,10 +175,11 @@ export default function(state = defaultCart, action) {
       })
       return {...state, cart: updatedCart}
     case ADD_TO_GUEST_CART:
-      console.log('THIS IS ADD TO GUEST CART REDUCER')
       return {...state, cart: action.cart}
     case CHECKOUT:
       return {...state, cart: []}
+    case GET_ORDER_HISTORY:
+      return {...state, orderHistory: action.orderHistory}
     default:
       return state
   }
