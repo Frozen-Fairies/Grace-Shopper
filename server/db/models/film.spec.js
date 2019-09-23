@@ -13,7 +13,7 @@ describe('Film model', () => {
 
       beforeEach(async () => {
         film = await Film.create({
-          uniqueId: 'super fun movie',
+          uniqueId: 'super-fun-movie',
           title: 'Super Fun Movie',
           description: 'A move that is fun',
           genre: 'Comedy',
@@ -29,7 +29,7 @@ describe('Film model', () => {
       })
 
       it('price is an INT', () => {
-        expect(typeof film.price).to.be.equal('integer')
+        expect(typeof film.price).to.be.equal('number')
       })
     })
   })
