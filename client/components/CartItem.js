@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
-  // console.log(props, 'THIS IS PROPS')
+  console.log(props, 'THIS IS PROPS')
   return (
     <div>
       {/* <img src={props.item.imageUrl} /> */}
