@@ -130,4 +130,13 @@ router.get('/:filmId', async (req, res, next) => {
   }
 })
 
+router.get('/cart/:filmId', async (req, res, next) => {
+  try {
+    const film = await Film.findByPk(req.params.filmId)
+    res.json(film)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
