@@ -14,7 +14,7 @@ const CartItem = props => {
           <p>{props.filmInfo.title}</p>{' '}
         </div>
       ) : (
-        'sup'
+        'Image Unavailable'
       )}
       <p>Total price: {total}</p>
       <form
