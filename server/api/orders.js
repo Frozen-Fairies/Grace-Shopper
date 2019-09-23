@@ -76,14 +76,17 @@ router.delete('/cart/:filmId', async (req, res, next) => {
 })
 
 router.put('/cart/:filmId', async (req, res, next) => {
+  // console.log(req.user.dataValues.id, 'this is req.user.dataValues.id')
   if (req.user) {
     try {
-      const orderId = await Order.findOne({
+      const order = await Order.findOne({
         where: {
           userId: req.user.dataValues.id,
           purchased: false
         }
-      }).id
+      })
+      const orderId = order.dataValues.id
+      console.log(order.dataValues.id, 'this is order')
       const cartItem = await Order_Film.findOne({
         where: {
           orderId,
