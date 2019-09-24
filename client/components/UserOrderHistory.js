@@ -11,11 +11,15 @@ class DisconnectedOrderHistory extends React.Component {
   render() {
     return (
       <div className="container is-fluid">
-        <div className="columns is-multiline">
-          {this.props.orderHistory.map(order => {
-            return <SingleOrder key={order.id} order={order} />
-          })}
-        </div>
+        {this.props.orderHistory.length > 0 ? (
+          <ul className="columns is-multiline">
+            {this.props.orderHistory.map(order => {
+              return <SingleOrder key={order.id} order={order} />
+            })}
+          </ul>
+        ) : (
+          <div> No order history </div>
+        )}
       </div>
     )
   }
