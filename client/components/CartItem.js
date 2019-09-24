@@ -1,11 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {removeFromCartThunk, updateCartThunk} from '../store/cart'
+import {
+  removeFromCartThunk,
+  updateCartThunk,
+  updateGuestCart
+} from '../store/cart'
 import {connect} from 'react-redux'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
   const filmData = JSON.parse(window.localStorage.cart)[props.idx]
+  // console.log(props)
   return (
     <div>
       {props.user.id ? (
@@ -34,7 +39,11 @@ const CartItem = props => {
             ...props.item,
             quantity: evt.target.quantity_input.value
           }
-          props.updateCartThunk(newProps)
+          // console.log(props.user.id)
+          props.user.id
+            ? props.updateCartThunk(newProps)
+            : props.updateGuestCart(newProps)
+          window.localStorage.setItem('cart', JSON.stringify(props.cart))
         }}
       >
         Qty:{' '}
@@ -61,14 +70,16 @@ const CartItem = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    cart: state.cart.cart
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     removeFromCartThunk: item => dispatch(removeFromCartThunk(item)),
-    updateCartThunk: item => dispatch(updateCartThunk(item))
+    updateCartThunk: item => dispatch(updateCartThunk(item)),
+    updateGuestCart: item => dispatch(updateGuestCart(item))
   }
 }
 

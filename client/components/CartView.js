@@ -83,9 +83,15 @@ class CartView extends React.Component {
                 />
               </div>
             )}
-            <button type="submit">
-              <i className="fad fa-shopping-cart" /> Place Order
-            </button>
+            {this.props.cart.length > 0 ? (
+              <button type="submit">
+                <i className="fad fa-shopping-cart" /> Place Order
+              </button>
+            ) : (
+              <button type="submit" disabled={true}>
+                <i className="fad fa-shopping-cart" /> Place Order
+              </button>
+            )}
           </form>
         </div>
       </div>

@@ -19,12 +19,12 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
+const UPDATE_GUEST_CART = 'UPDATE_GUEST_CART'
 const CHECKOUT = 'CHECKOUT'
 
 const GUEST_CHECKOUT = 'GUEST_CHECKOUT'
 
 const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY'
-
 
 // ACTION CREATOR
 const getCart = cart => ({
@@ -63,11 +63,15 @@ const updateCart = item => ({
   item
 })
 
+export const updateGuestCart = item => ({
+  type: UPDATE_GUEST_CART,
+  item
+})
+
 const checkout = address => ({
   type: CHECKOUT,
   address
 })
-
 
 const guestCheckout = (cart, email, address) => ({
   type: GUEST_CHECKOUT,
@@ -79,7 +83,6 @@ const guestCheckout = (cart, email, address) => ({
 const getOrderHistory = orderHistory => ({
   type: GET_ORDER_HISTORY,
   orderHistory
-
 })
 
 // THUNK CREATOR
@@ -162,7 +165,6 @@ export const checkoutThunk = address => {
   }
 }
 
-
 export const guestCheckoutThunk = (cart, email, address) => {
   return async dispatch => {
     try {
@@ -174,7 +176,7 @@ export const guestCheckoutThunk = (cart, email, address) => {
       dispatch(guestCheckout(data))
       window.localStorage.clear()
       history.push('/orders/cart/success')
-      } catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -185,7 +187,6 @@ export const getOrderHistoryThunk = () => {
     try {
       const {data} = await axios.get(`/api/orders/history`)
       dispatch(getOrderHistory(data))
-
     } catch (error) {
       console.log(error)
     }
@@ -228,6 +229,17 @@ export default function(state = defaultCart, action) {
         }
       })
       return {...state, cart: updatedCart}
+    case UPDATE_GUEST_CART:
+      console.log('WE OUT HERE FAM')
+      const newGuestCart = state.cart.map(item => {
+        if (item.filmId === action.item.filmId) {
+          item.quantity = parseInt(action.item.quantity, 10)
+          return item
+        } else {
+          return item
+        }
+      })
+      return {...state, cart: newGuestCart}
     case ADD_TO_GUEST_CART:
       return {...state, cart: action.cart}
     case CHECKOUT:

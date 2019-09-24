@@ -77,6 +77,7 @@ router.get('/cart/complete', async (req, res, next) => {
   }
 })
 
+// Remove item from cart route
 router.delete('/cart/:filmId', async (req, res, next) => {
   if (req.user) {
     try {
@@ -103,8 +104,9 @@ router.delete('/cart/:filmId', async (req, res, next) => {
   }
 })
 
+// This is the checkout logged in cart route
 router.put('/cart/checkout', async (req, res, next) => {
-  // console.log(req.body.address.address, 'address')
+  // console.log(req.body, 'req.body')
   if (req.user) {
     try {
       const order = await Order.findOne({
@@ -134,7 +136,8 @@ router.put('/cart/checkout', async (req, res, next) => {
     res.sendStatus(401)
   }
 })
-// NOT DONE NOT DONE NOT DONE NOT DONE NOT DONE NOT DONE
+
+// This is the guest checkout route
 router.post('/cart/checkout', async (req, res, next) => {
   try {
     const guestUser = User.findOrCreate({
@@ -171,8 +174,10 @@ router.post('/cart/checkout', async (req, res, next) => {
   }
 })
 
+// Updating the logged in cart route
 router.put('/cart/:filmId', async (req, res, next) => {
   // console.log(req.user.dataValues.id, 'this is req.user.dataValues.id')
+  console.log(req.body, 'req.body')
   if (req.user) {
     try {
       const order = await Order.findOne({
@@ -200,6 +205,7 @@ router.put('/cart/:filmId', async (req, res, next) => {
   }
 })
 
+// This is the Add item to cart/create new cart route
 router.post('/cart/:filmId', async (req, res, next) => {
   if (req.user) {
     try {
