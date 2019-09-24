@@ -8,8 +8,8 @@ import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
 import OrderHistory from './components/UserOrderHistory'
 import SingleMovieView from './components/singleMovieView'
-import profileUpdate from './components/profileUpdate'
 import CheckoutSuccess from './components/CheckoutSuccess'
+import profileUpdate from './components/profileUpdate'
 import Tags from './components/Tags'
 
 /**
