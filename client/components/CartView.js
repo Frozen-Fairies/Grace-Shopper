@@ -6,7 +6,6 @@ import {fetchCart, fetchCartForCartView, checkoutThunk} from '../store/cart'
 class CartView extends React.Component {
   componentDidMount() {
     this.props.fetchCartForCartView()
-    //this.checkout = this.checkout.bind(this)
   }
 
   render() {
@@ -21,6 +20,7 @@ class CartView extends React.Component {
                   key={item.id}
                   item={item}
                   filmInfo={this.props.filmData[idx]}
+                  idx={idx}
                 />
               )
             })
