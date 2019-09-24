@@ -6,8 +6,9 @@ import {Login, Signup, profile} from './components'
 import {me} from './store'
 import AllMovies from './components/allMovies'
 import CartView from './components/CartView'
+import OrderHistory from './components/UserOrderHistory'
 import SingleMovieView from './components/singleMovieView'
-import CheckoutSuccsess from './components/CheckoutSuccess'
+import CheckoutSuccess from './components/CheckoutSuccess'
 import profileUpdate from './components/profileUpdate'
 
 /**
@@ -32,7 +33,10 @@ class Routes extends Component {
         <Route exact path="/profile/update" component={profileUpdate} />
 
         <Route exact path="/orders/cart" component={CartView} />
-        <Route exact path="/orders/cart/success" component={CheckoutSuccsess} />
+
+        <Route exact path="/orders/history" component={OrderHistory} />
+
+        <Route exact path="/orders/cart/success" component={CheckoutSuccess} />
 
         <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
 
