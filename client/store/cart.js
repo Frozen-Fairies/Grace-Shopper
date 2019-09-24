@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable no-case-declarations */
 import axios from 'axios'
 import history from '../history'
@@ -11,6 +12,7 @@ const defaultCart = {
 // ACTION TYPES
 const GET_CART = 'GET_CART'
 const GET_CART_FOR_CART_VIEW = 'GET_CART_FOR_CART_VIEW'
+const GET_CART_FOR_GUEST_CART_VIEW = 'GET_CART_FOR_GUEST_CART_VIEW'
 const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
@@ -27,6 +29,11 @@ const getCartForCartView = (cart, filmData) => ({
   type: GET_CART_FOR_CART_VIEW,
   cart,
   filmData
+})
+
+const getCartForGuestCartView = cart => ({
+  type: GET_CART_FOR_GUEST_CART_VIEW,
+  cart
 })
 
 const addToCart = item => ({
@@ -74,6 +81,16 @@ export const fetchCartForCartView = () => {
     } catch (error) {
       console.log(error)
     }
+  }
+}
+
+export const fetchCartForGuestCartView = cart => {
+  return dispatch => {
+    let holder = []
+    for (let i = 0; i < JSON.parse(window.localStorage.cart).length; i++) {
+      holder.push(cart[i])
+    }
+    dispatch(getCartForGuestCartView(holder))
   }
 }
 
@@ -134,6 +151,11 @@ export default function(state = defaultCart, action) {
         ...state,
         cart: action.cart,
         filmData: action.filmData
+      }
+    case GET_CART_FOR_GUEST_CART_VIEW:
+      return {
+        ...state,
+        cart: action.cart
       }
     case ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}

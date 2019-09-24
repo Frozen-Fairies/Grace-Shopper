@@ -1,15 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchCart, fetchCartForCartView, checkoutThunk} from '../store/cart'
+import {
+  fetchCart,
+  fetchCartForCartView,
+  checkoutThunk,
+  fetchCartForGuestCartView
+} from '../store/cart'
 
 class CartView extends React.Component {
   componentDidMount() {
     this.props.fetchCartForCartView()
+    if (!this.props.user.id) {
+      this.props.fetchCartForGuestCartView(JSON.parse(window.localStorage.cart))
+    } else {
+      this.props.fetchCartForCartView()
+    }
   }
 
   render() {
-    console.log(this.props.user.address, 'address is ')
+    // console.dir(this.props.cart, 'this is props.cart')
+    // console.dir(JSON.parse(window.localStorage.cart), 'this is local storage cart')
     return (
       <div>
         <ul>
@@ -66,6 +77,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
     fetchCartForCartView: () => dispatch(fetchCartForCartView()),
+    fetchCartForGuestCartView: cart =>
+      dispatch(fetchCartForGuestCartView(cart)),
     checkout: address => dispatch(checkoutThunk(address))
   }
 }
