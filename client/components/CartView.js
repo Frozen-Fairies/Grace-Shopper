@@ -1,15 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchCart, fetchCartForCartView, checkoutThunk} from '../store/cart'
+import {
+  fetchCart,
+  fetchCartForCartView,
+  checkoutThunk,
+  fetchCartForGuestCartView,
+  guestCheckoutThunk
+} from '../store/cart'
 
 class CartView extends React.Component {
   componentDidMount() {
     this.props.fetchCartForCartView()
+    if (!this.props.user.id && window.localStorage.cart) {
+      this.props.fetchCartForGuestCartView(JSON.parse(window.localStorage.cart))
+    } else {
+      this.props.fetchCartForCartView()
+    }
   }
 
   render() {
-    console.log(this.props.user.address, 'address is ')
     return (
       <div>
         <ul>
@@ -30,20 +40,49 @@ class CartView extends React.Component {
         </ul>
         <div>
           <form
-            onSubmit={evt => {
-              evt.preventDefault()
-              const newProps = {
-                address: evt.target.address.value
-              }
-              this.props.checkout(newProps)
-            }}
+            onSubmit={
+              this.props.user.id
+                ? evt => {
+                    evt.preventDefault()
+                    const newProps = {
+                      address: evt.target.address.value
+                    }
+                    this.props.checkout(newProps)
+                  }
+                : evt => {
+                    evt.preventDefault()
+                    this.props.guestCheckout(
+                      this.props.cart,
+                      evt.target.email.value,
+                      evt.target.address.value
+                    )
+                  }
+            }
           >
-            <input
-              type="text"
-              name="address"
-              id="address"
-              defaultValue={this.props.user.address}
-            />
+            {' '}
+            {this.props.user.id ? (
+              <input
+                type="text"
+                name="address"
+                id="address"
+                defaultValue={this.props.user.address}
+              />
+            ) : (
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  defaultValue="email"
+                />{' '}
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  defaultValue="address"
+                />
+              </div>
+            )}
             <button type="submit">
               <i className="fad fa-shopping-cart" /> Place Order
             </button>
@@ -66,7 +105,11 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
     fetchCartForCartView: () => dispatch(fetchCartForCartView()),
-    checkout: address => dispatch(checkoutThunk(address))
+    fetchCartForGuestCartView: cart =>
+      dispatch(fetchCartForGuestCartView(cart)),
+    checkout: address => dispatch(checkoutThunk(address)),
+    guestCheckout: (cart, email, address) =>
+      dispatch(guestCheckoutThunk(cart, email, address))
   }
 }
 
