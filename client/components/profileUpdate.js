@@ -25,7 +25,7 @@ export const ProfileUpdate = props => {
           <input name="address" type="text" placeholder="Enter New Address" />
           <input name="submit" type="submit" />
         </div>
-        {error && error.response && <div> This email is already in use. </div>}
+        {error && <div> {error} </div>}
       </form>
     </div>
   )
