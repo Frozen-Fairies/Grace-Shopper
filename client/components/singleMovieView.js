@@ -91,7 +91,7 @@ class DisconnectedSingleMovieView extends React.Component {
     if (!movie) {
       return <div>...Loading</div>
     }
-    lastTag = movie.tags.pop()
+    lastTag = movie.tags[movie.tags.length - 1]
 
     return (
       <div className="container is-fluid">
@@ -130,12 +130,12 @@ class DisconnectedSingleMovieView extends React.Component {
                     id="quantity_input"
                   />{' '}
                   &nbsp;
-                  <button type="submit">Add to Cart</button>
+                  <button type="submit">Add To Cart</button>
                 </form>
               </div>
               <div className="tile">
                 <p>
-                  {movie.tags.map(tag => {
+                  {movie.tags.slice(0, -1).map(tag => {
                     return (
                       <Link key={tag} to={`/movies/tags/${tag}`}>
                         {tag},&nbsp;

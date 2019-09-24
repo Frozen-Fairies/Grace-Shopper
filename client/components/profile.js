@@ -6,11 +6,22 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {email, address} = props.user
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h1>Welcome, {email}</h1>
+      <h1>Address: {address}</h1>
+      <h1>Click the Button Below to Update Your Info.</h1>
+
+      <button
+        type="button"
+        onClick={() => {
+          props.history.push('/profile/update')
+        }}
+      >
+        Update
+      </button>
     </div>
   )
 }
@@ -20,7 +31,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    user: state.user
   }
 }
 

@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const ALREADY_IN_USE = 'ALREADY_IN_USE'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,10 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const errorAction = () => ({
+  type: ALREADY_IN_USE,
+  error: 'This email is already in use.'
+})
 
 /**
  * THUNK CREATORS
@@ -27,6 +32,15 @@ export const me = () => async dispatch => {
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
+  }
+}
+export const updateUser = newInfo => async dispatch => {
+  try {
+    const res = await axios.put('/api/users', newInfo)
+    dispatch(me())
+    history.push('/profile')
+  } catch (error) {
+    return dispatch(errorAction())
   }
 }
 
@@ -67,6 +81,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case ALREADY_IN_USE:
+      return {...state, error: action.error}
     default:
       return state
   }

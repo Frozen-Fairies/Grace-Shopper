@@ -7,7 +7,8 @@ import {runInNewContext} from 'vm'
 // INITIAL STATE
 const defaultCart = {
   cart: [],
-  filmData: []
+  filmData: [],
+  orderHistory: []
 }
 
 // ACTION TYPES
@@ -19,7 +20,11 @@ const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const CHECKOUT = 'CHECKOUT'
+
 const GUEST_CHECKOUT = 'GUEST_CHECKOUT'
+
+const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY'
+
 
 // ACTION CREATOR
 const getCart = cart => ({
@@ -63,11 +68,18 @@ const checkout = address => ({
   address
 })
 
+
 const guestCheckout = (cart, email, address) => ({
   type: GUEST_CHECKOUT,
   cart,
   email,
   address
+})
+
+const getOrderHistory = orderHistory => ({
+  type: GET_ORDER_HISTORY,
+  orderHistory
+
 })
 
 // THUNK CREATOR
@@ -150,6 +162,7 @@ export const checkoutThunk = address => {
   }
 }
 
+
 export const guestCheckoutThunk = (cart, email, address) => {
   return async dispatch => {
     try {
@@ -161,6 +174,18 @@ export const guestCheckoutThunk = (cart, email, address) => {
       dispatch(guestCheckout(data))
       window.localStorage.clear()
       history.push('/orders/cart/success')
+      } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const getOrderHistoryThunk = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/history`)
+      dispatch(getOrderHistory(data))
+
     } catch (error) {
       console.log(error)
     }
@@ -204,10 +229,11 @@ export default function(state = defaultCart, action) {
       })
       return {...state, cart: updatedCart}
     case ADD_TO_GUEST_CART:
-      console.log('THIS IS ADD TO GUEST CART REDUCER')
       return {...state, cart: action.cart}
     case CHECKOUT:
       return {...state, cart: []}
+    case GET_ORDER_HISTORY:
+      return {...state, orderHistory: action.orderHistory}
     default:
       return state
   }
