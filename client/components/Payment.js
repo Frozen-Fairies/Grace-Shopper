@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
+import history from '../history'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class CheckoutForm extends Component {
 
   submit() {
     // User clicked submit
-    console.log('Purchased!')
     history.push('/orders/cart/success')
   }
 
