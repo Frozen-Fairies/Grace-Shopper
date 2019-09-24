@@ -1,7 +1,6 @@
 import React from 'react'
 import {updateFilmThunk, getAllFilmsThunk} from '../store/admin'
 import {connect} from 'react-redux'
-import AdminFilmsRow from './AdminFilmsRow'
 
 class DisconnectedAdminEditFilm extends React.Component {
   async componentDidMount() {

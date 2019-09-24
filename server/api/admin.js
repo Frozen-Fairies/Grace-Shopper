@@ -93,4 +93,73 @@ router.get('/orders/history/:userId', async (req, res, next) => {
   }
 })
 
+router.get('/users/:userId', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const admin = await User.findByPk(req.user.dataValues.id)
+      if (admin.isAdmin) {
+        const user = await User.findByPk(req.params.userId)
+        res.json(user)
+      } else {
+        res.sendStatus(401)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
+router.get('/users/', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const admin = await User.findByPk(req.user.dataValues.id)
+      if (admin.isAdmin) {
+        const users = await User.findAll()
+        res.json(users)
+      } else {
+        res.sendStatus(401)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
+router.put('/users/:userId', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const admin = await User.findByPk(req.user.dataValues.id)
+      if (admin.isAdmin) {
+        const user = await User.findByPk(req.params.userId)
+        let potentialNewEmail = req.body.email
+        let potentialNewAddress = req.body.address
+
+        if (!potentialNewEmail) {
+          potentialNewEmail = user.email
+        }
+        if (!potentialNewAddress) {
+          potentialNewAddress = user.address
+        }
+        const obj = user.update({
+          name: req.body.name,
+          email: potentialNewEmail,
+          address: potentialNewAddress,
+          password: req.body.password
+        })
+        res.status(200).json(obj)
+      } else {
+        res.sendStatus(401)
+      }
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 module.exports = router
