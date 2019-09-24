@@ -35,7 +35,7 @@ export const updateUser = newInfo => async dispatch => {
     dispatch(me())
     history.push('/profile')
   } catch (error) {
-    console.log(error)
+    return dispatch(getUser({error}))
   }
 }
 

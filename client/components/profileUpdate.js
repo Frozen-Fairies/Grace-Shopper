@@ -6,7 +6,7 @@ import {updateUser, me} from '../store/user'
  * COMPONENT
  */
 export const ProfileUpdate = props => {
-  const {update, getUser} = props
+  const {update, getUser, error} = props
 
   return (
     <div>
@@ -25,6 +25,7 @@ export const ProfileUpdate = props => {
           <input name="address" type="text" placeholder="Enter New Address" />
           <input name="submit" type="submit" />
         </div>
+        {error && error.response && <div> This email is already in use. </div>}
       </form>
     </div>
   )
@@ -35,7 +36,8 @@ export const ProfileUpdate = props => {
  */
 const mapState = state => {
   return {
-    user: state.user
+    user: state.user,
+    error: state.user.error
   }
 }
 
