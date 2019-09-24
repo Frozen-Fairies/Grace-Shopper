@@ -10,6 +10,8 @@ import OrderHistory from './components/UserOrderHistory'
 import SingleMovieView from './components/singleMovieView'
 import CheckoutSuccess from './components/CheckoutSuccess'
 import profileUpdate from './components/profileUpdate'
+import AdminFilms from './components/AdminFilms'
+import AdminEditFilm from './components/AdminEditFilm'
 import Tags from './components/Tags'
 
 /**
@@ -38,6 +40,8 @@ class Routes extends Component {
         <Route exact path="/orders/history" component={OrderHistory} />
 
         <Route exact path="/orders/cart/success" component={CheckoutSuccess} />
+        <Route path="/admin/films/:id" component={AdminEditFilm} />
+        <Route exact path="/admin/films" component={AdminFilms} />
 
         <Route path="/movies/tags/:tagName" component={Tags} />
         <Route path="/movies/:genre/:uniqueId" component={SingleMovieView} />
