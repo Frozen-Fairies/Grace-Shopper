@@ -1,7 +1,7 @@
 import React from 'react'
 import {getOrderHistoryThunk} from '../store/cart'
 import {connect} from 'react-redux'
-import SingleOrder from './Singleorder'
+import SingleOrder from './SingleOrder'
 
 class DisconnectedOrderHistory extends React.Component {
   async componentDidMount() {
