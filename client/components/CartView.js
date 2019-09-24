@@ -9,7 +9,6 @@ class CartView extends React.Component {
   }
 
   render() {
-    console.log(this.props.user.address, 'address is ')
     return (
       <div>
         <ul>

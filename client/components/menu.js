@@ -22,27 +22,34 @@ class DisconnectedMenu extends React.Component {
 
   render() {
     return (
-      <div id="categories">
-        <Link
-          to="/movies/featured"
-          onClick={() => store.dispatch(getFeaturedMoviesThunk())}
-        >
-          Featured
-        </Link>
-        {genres.map((genre, id) => (
-          <div key={id}>
+      <div className="block is-primary">
+        <hr className="hr" />
+        <aside className="menu-list">
+          <div className="container level-item">
             <Link
-              to={`/movies/${genre}`}
-              onClick={() =>
-                store.dispatch(
-                  getAllMoviesThunk(genre[0].toUpperCase() + genre.slice(1))
-                )
-              }
+              to="/movies/featured"
+              className="menu-item"
+              onClick={() => store.dispatch(getFeaturedMoviesThunk())}
             >
-              {genre[0].toUpperCase() + genre.slice(1)}
+              Featured
             </Link>
+            {genres.map((genre, id) => (
+              <Link
+                to={`/movies/${genre}`}
+                className="menu-item"
+                key={id}
+                onClick={() =>
+                  store.dispatch(
+                    getAllMoviesThunk(genre[0].toUpperCase() + genre.slice(1))
+                  )
+                }
+              >
+                {genre[0].toUpperCase() + genre.slice(1)}
+              </Link>
+            ))}
           </div>
-        ))}
+        </aside>
+        <hr className="hr" />
       </div>
     )
   }
