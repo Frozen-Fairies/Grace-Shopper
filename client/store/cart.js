@@ -25,7 +25,6 @@ const GUEST_CHECKOUT = 'GUEST_CHECKOUT'
 
 const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY'
 
-
 // ACTION CREATOR
 const getCart = cart => ({
   type: GET_CART,
@@ -68,7 +67,6 @@ const checkout = address => ({
   address
 })
 
-
 const guestCheckout = (cart, email, address) => ({
   type: GUEST_CHECKOUT,
   cart,
@@ -79,7 +77,6 @@ const guestCheckout = (cart, email, address) => ({
 const getOrderHistory = orderHistory => ({
   type: GET_ORDER_HISTORY,
   orderHistory
-
 })
 
 // THUNK CREATOR
@@ -87,6 +84,7 @@ export const fetchCart = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orders/cart')
+      console.log(data)
       dispatch(getCart(data))
     } catch (error) {
       console.log(error)
@@ -131,7 +129,8 @@ export const addToCartThunk = (id, quantity) => {
 export const removeFromCartThunk = item => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/orders/cart/${item.filmId}`, item)
+      const data = await axios.delete(`/api/orders/cart/${item.filmId}`, item)
+      console.log(data)
       dispatch(removeFromCart(item))
     } catch (error) {
       console.log(error)
@@ -162,7 +161,6 @@ export const checkoutThunk = address => {
   }
 }
 
-
 export const guestCheckoutThunk = (cart, email, address) => {
   return async dispatch => {
     try {
@@ -174,7 +172,7 @@ export const guestCheckoutThunk = (cart, email, address) => {
       dispatch(guestCheckout(data))
       window.localStorage.clear()
       history.push('/orders/cart/success')
-      } catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -185,7 +183,6 @@ export const getOrderHistoryThunk = () => {
     try {
       const {data} = await axios.get(`/api/orders/history`)
       dispatch(getOrderHistory(data))
-
     } catch (error) {
       console.log(error)
     }

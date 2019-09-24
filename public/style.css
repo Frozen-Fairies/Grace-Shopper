@@ -30,8 +30,18 @@ ul {
 img {
   min-height: 520px;
   min-width: 300px;
+  max-width: 600px;
+  max-height: 400px;
 }
 
 #quantity-input {
   width: 50px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+.hr {
+  background-color: gray;
 }
