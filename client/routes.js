@@ -14,6 +14,8 @@ import AdminFilms from './components/AdminFilms'
 import AdminEditFilm from './components/AdminEditFilm'
 import AdminOrders from './components/AdminOrders'
 import AdminOrdersUser from './components/AdminOrdersUser'
+import AdminEditUser from './components/AdminEditUser'
+import AdminUsers from './components/AdminUsers'
 import Tags from './components/Tags'
 
 /**
@@ -44,6 +46,8 @@ class Routes extends Component {
         <Route exact path="/orders/cart/success" component={CheckoutSuccess} />
         <Route path="/admin/films/:id" component={AdminEditFilm} />
         <Route exact path="/admin/films" component={AdminFilms} />
+        <Route path="/admin/users/:userId" component={AdminEditUser} />
+        <Route exact path="/admin/users" component={AdminUsers} />
 
         <Route
           path="/admin/orders/history/:userId"
