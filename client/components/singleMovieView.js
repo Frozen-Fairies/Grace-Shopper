@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -43,11 +44,35 @@ class DisconnectedSingleMovieView extends React.Component {
     if (this.props.user.id) {
       await this.props.addToCart(this.props.movies[0].id, quantity)
     } else {
-      this.props.cart.push({
-        price: this.props.movies[0].price,
-        quantity: quantity,
-        filmId: this.props.movies[0].id
+      // if(this.props.cart.includes(`filmId: ${this.props.movies[0].id}`)) {
+
+      // } else {
+      //   this.props.cart.push({
+      //     price: this.props.movies[0].price,
+      //     quantity: quantity,
+      //     filmId: this.props.movies[0].id
+      //   })
+      // }
+      let itemHolder = this.props.cart.filter(item => {
+        if (item.filmId === this.props.movies[0].id) {
+          return item
+        }
       })
+      // PASS IMAGEURL AND TITLE IN TO THE GUESTCART PROBABLY THE EASIEST WAY TO HANDLE THIS
+      if (itemHolder.length) {
+        itemHolder[0].quantity += parseInt(
+          event.target.quantity_input.value,
+          10
+        ) // this should add to quantity if there is already an instance of that movie
+      } else {
+        this.props.cart.push({
+          price: this.props.movies[0].price,
+          quantity: quantity,
+          filmId: this.props.movies[0].id,
+          imageUrl: this.props.movies[0].imageUrl,
+          title: this.props.movies[0].title
+        })
+      }
     }
     window.localStorage.setItem('cart', JSON.stringify(this.props.cart))
   }
@@ -102,7 +127,7 @@ class DisconnectedSingleMovieView extends React.Component {
                     name="quantity"
                     min="1"
                     defaultValue={1}
-                    id="quantity-input"
+                    id="quantity_input"
                   />{' '}
                   &nbsp;
                   <button type="submit">Add to Cart</button>

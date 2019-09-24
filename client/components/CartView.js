@@ -21,6 +21,7 @@ class CartView extends React.Component {
                   key={item.id}
                   item={item}
                   filmInfo={this.props.filmData[idx]}
+                  idx={idx}
                 />
               )
             })

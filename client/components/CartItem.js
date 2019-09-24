@@ -5,16 +5,26 @@ import {connect} from 'react-redux'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
+  console.log(JSON.parse(window.localStorage.cart)[0], 'THIS IS localStorage')
+  const filmData = JSON.parse(window.localStorage.cart)[props.idx]
   return (
     <div>
-      {props.filmInfo ? (
+      {props.user.id ? (
+        props.filmInfo ? (
+          <div>
+            {' '}
+            <img src={props.filmInfo.imageUrl} />
+            <p>{props.filmInfo.title}</p>{' '}
+          </div>
+        ) : (
+          'Image Unavailable'
+        )
+      ) : (
         <div>
           {' '}
-          <img src={props.filmInfo.imageUrl} />
-          <p>{props.filmInfo.title}</p>{' '}
+          <img src={filmData.imageUrl} />
+          <p>{filmData.title}</p>{' '}
         </div>
-      ) : (
-        'Image Unavailable'
       )}
       <p>Total price: {total}</p>
       <form
@@ -50,6 +60,12 @@ const CartItem = props => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     removeFromCartThunk: item => dispatch(removeFromCartThunk(item)),
@@ -57,4 +73,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CartItem)
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem)
