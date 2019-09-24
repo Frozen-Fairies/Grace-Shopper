@@ -2,6 +2,7 @@
 /* eslint-disable no-case-declarations */
 import axios from 'axios'
 import history from '../history'
+import {runInNewContext} from 'vm'
 
 // INITIAL STATE
 const defaultCart = {
@@ -18,6 +19,7 @@ const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const CHECKOUT = 'CHECKOUT'
+const GUEST_CHECKOUT = 'GUEST_CHECKOUT'
 
 // ACTION CREATOR
 const getCart = cart => ({
@@ -58,6 +60,13 @@ const updateCart = item => ({
 
 const checkout = address => ({
   type: CHECKOUT,
+  address
+})
+
+const guestCheckout = (cart, email, address) => ({
+  type: GUEST_CHECKOUT,
+  cart,
+  email,
   address
 })
 
@@ -134,6 +143,23 @@ export const checkoutThunk = address => {
     try {
       const {data} = await axios.put(`/api/orders/cart/checkout`, {address})
       dispatch(checkout(data))
+      history.push('/orders/cart/success')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const guestCheckoutThunk = (cart, email, address) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post(`/api/orders/cart/checkout`, {
+        cart,
+        email,
+        address
+      })
+      dispatch(guestCheckout(data))
+      window.localStorage.clear()
       history.push('/orders/cart/success')
     } catch (error) {
       console.log(error)

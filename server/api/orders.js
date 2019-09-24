@@ -3,6 +3,7 @@ const Film = require('../db/models/film')
 const Sequelize = require('sequelize')
 const Order = require('../db/models/order')
 const Order_Film = require('../db/models/orderFilm')
+const User = require('../db/models/user')
 
 // Gets all previous orders
 router.get('/history', async (req, res, next) => {
@@ -103,7 +104,7 @@ router.delete('/cart/:filmId', async (req, res, next) => {
 })
 
 router.put('/cart/checkout', async (req, res, next) => {
-  console.log(req.body.address.address, 'address')
+  // console.log(req.body.address.address, 'address')
   if (req.user) {
     try {
       const order = await Order.findOne({
@@ -133,6 +134,42 @@ router.put('/cart/checkout', async (req, res, next) => {
     res.sendStatus(401)
   }
 })
+// NOT DONE NOT DONE NOT DONE NOT DONE NOT DONE NOT DONE
+router.post('/cart/checkout', async (req, res, next) => {
+  try {
+    const guestUser = User.findOrCreate({
+      where: {
+        email: req.body.email
+      }
+    })
+
+    const order = await Order.create({
+      purchased: true,
+      address: req.body.address,
+      userId: guestUser.id
+    })
+
+    for (let i = 0; i < req.body.cart.length; i++) {
+      let holder = req.body.cart[i]
+      const film = await Film.findByPk(holder.filmId)
+      await Order_Film.create({
+        quantity: holder.quantity,
+        price: film.price,
+        orderId: order.id,
+        filmId: holder.filmId
+      })
+    }
+    const obj = Order.findOne({
+      include: [{model: Film}],
+      where: {
+        orderId: order.id
+      }
+    })
+    res.send(200).json(obj)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.put('/cart/:filmId', async (req, res, next) => {
   // console.log(req.user.dataValues.id, 'this is req.user.dataValues.id')
@@ -145,7 +182,7 @@ router.put('/cart/:filmId', async (req, res, next) => {
         }
       })
       const orderId = order.dataValues.id
-      console.log(order.dataValues.id, 'this is order')
+      // console.log(order.dataValues.id, 'this is order')
       const cartItem = await Order_Film.findOne({
         where: {
           orderId,
