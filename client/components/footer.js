@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <div>
       <hr className="hr" />
-      <div>CONTACT: 917-555-8989</div>
-      <div>SUPPORT: FullstackAcademy@fullstack.com </div>
+      <div>CONTACT: (646) 905-0991</div>
+      <div>SUPPORT: FullstackAcademy@FullstackAcademy.com </div>
     </div>
   )
 }

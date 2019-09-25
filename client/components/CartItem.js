@@ -39,7 +39,7 @@ const CartItem = props => {
           <p>{filmData.title}</p>{' '}
         </div>
       )}
-      <p>Total Price: {total}</p>
+      <p>Total Price: ${total}</p>
       <form
         onSubmit={evt => {
           evt.preventDefault()

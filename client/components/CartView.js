@@ -76,13 +76,13 @@ class CartView extends React.Component {
                   type="text"
                   name="email"
                   id="email"
-                  defaultValue="email"
+                  defaultValue="Email"
                 />{' '}
                 <input
                   type="text"
                   name="address"
                   id="address"
-                  defaultValue="address"
+                  defaultValue="Address"
                 />
               </div>
             )}
