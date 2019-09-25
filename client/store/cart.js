@@ -17,7 +17,9 @@ const GET_CART_FOR_GUEST_CART_VIEW = 'GET_CART_FOR_GUEST_CART_VIEW'
 const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const REMOVE_FROM_GUEST_CART = 'REMOVE_FROM_GUEST_CART'
 const UPDATE_CART = 'UPDATE_CART'
+const UPDATE_GUEST_CART = 'UPDATE_GUEST_CART'
 const CHECKOUT = 'CHECKOUT'
 
 const GUEST_CHECKOUT = 'GUEST_CHECKOUT'
@@ -56,8 +58,18 @@ const removeFromCart = item => ({
   item
 })
 
+export const removeFromGuestCart = item => ({
+  type: REMOVE_FROM_GUEST_CART,
+  item
+})
+
 const updateCart = item => ({
   type: UPDATE_CART,
+  item
+})
+
+export const updateGuestCart = item => ({
+  type: UPDATE_GUEST_CART,
   item
 })
 
@@ -214,6 +226,20 @@ export default function(state = defaultCart, action) {
       })
 
       return {...state, cart: newCart}
+    case REMOVE_FROM_GUEST_CART:
+      let updatedGuestCart
+      console.log(state.cart.length, 'state.cart')
+      if (state.cart.length <= 1) {
+        console.log('cart length is less than or equal to one')
+        window.localStorage.setItem('cart', '{}')
+        window.localStorage.clear()
+        updatedGuestCart = []
+      } else {
+        updatedGuestCart = state.cart.filter(
+          item => item.filmId !== action.item.filmId
+        )
+      }
+      return {...state, cart: updatedGuestCart}
     case UPDATE_CART:
       const updatedCart = state.cart.map(item => {
         if (item.filmId === action.item.filmId) {
@@ -224,6 +250,17 @@ export default function(state = defaultCart, action) {
         }
       })
       return {...state, cart: updatedCart}
+    case UPDATE_GUEST_CART:
+      console.log('WE OUT HERE FAM')
+      const newGuestCart = state.cart.map(item => {
+        if (item.filmId === action.item.filmId) {
+          item.quantity = parseInt(action.item.quantity, 10)
+          return item
+        } else {
+          return item
+        }
+      })
+      return {...state, cart: newGuestCart}
     case ADD_TO_GUEST_CART:
       return {...state, cart: action.cart}
     case CHECKOUT:
