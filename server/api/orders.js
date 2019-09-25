@@ -216,7 +216,7 @@ router.post('/cart/:filmId', async (req, res, next) => {
         }
       })
       if (!order) {
-        order = Order.create({
+        order = await Order.create({
           purchased: false,
           userId: req.user.dataValues.id
         })
