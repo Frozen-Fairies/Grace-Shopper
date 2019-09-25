@@ -18,6 +18,7 @@ const GET_CART_FOR_GUEST_CART_VIEW = 'GET_CART_FOR_GUEST_CART_VIEW'
 const ADD_TO_CART = 'ADD_TO_CART'
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const REMOVE_FROM_GUEST_CART = 'REMOVE_FROM_GUEST_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const UPDATE_GUEST_CART = 'UPDATE_GUEST_CART'
 const CHECKOUT = 'CHECKOUT'
@@ -55,6 +56,11 @@ export const addToGuestCart = cart => ({
 
 const removeFromCart = item => ({
   type: REMOVE_FROM_CART,
+  item
+})
+
+export const removeFromGuestCart = item => ({
+  type: REMOVE_FROM_GUEST_CART,
   item
 })
 
@@ -219,6 +225,20 @@ export default function(state = defaultCart, action) {
       })
 
       return {...state, cart: newCart}
+    case REMOVE_FROM_GUEST_CART:
+      let updatedGuestCart
+      console.log(state.cart.length, 'state.cart')
+      if (state.cart.length <= 1) {
+        console.log('cart length is less than or equal to one')
+        window.localStorage.setItem('cart', '{}')
+        window.localStorage.clear()
+        updatedGuestCart = []
+      } else {
+        updatedGuestCart = state.cart.filter(
+          item => item.filmId !== action.item.filmId
+        )
+      }
+      return {...state, cart: updatedGuestCart}
     case UPDATE_CART:
       const updatedCart = state.cart.map(item => {
         if (item.filmId === action.item.filmId) {

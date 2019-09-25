@@ -3,14 +3,23 @@ import {Link} from 'react-router-dom'
 import {
   removeFromCartThunk,
   updateCartThunk,
-  updateGuestCart
+  updateGuestCart,
+  removeFromGuestCart
 } from '../store/cart'
 import {connect} from 'react-redux'
+import history from '../history'
 
 const CartItem = props => {
   const total = props.item.price * props.item.quantity / 100
   const filmData = JSON.parse(window.localStorage.cart)[props.idx]
-  // console.log(props)
+
+  const whatever = () => {
+    if (props.cart.length <= 1) {
+      window.localStorage.clear()
+      history.push('/orders/cart')
+    }
+  }
+
   return (
     <div>
       {props.user.id ? (
@@ -39,7 +48,7 @@ const CartItem = props => {
             ...props.item,
             quantity: evt.target.quantity_input.value
           }
-          // console.log(props.user.id)
+
           props.user.id
             ? props.updateCartThunk(newProps)
             : props.updateGuestCart(newProps)
@@ -57,12 +66,29 @@ const CartItem = props => {
         <button type="submit">Update</button>
       </form>
       <div>
-        <button
-          type="button"
-          onClick={() => props.removeFromCartThunk(props.item)}
-        >
-          Remove
-        </button>
+        {props.user.id ? (
+          <button
+            type="button"
+            onClick={() => props.removeFromCartThunk(props.item)}
+          >
+            Remove
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              whatever()
+              props.removeFromGuestCart(props.item)
+
+              console.log(props.item, 'props.item')
+              props.cart.length > 0
+                ? console.log('')
+                : window.localStorage.setItem('cart', '{}')
+            }}
+          >
+            Remove
+          </button>
+        )}
       </div>
     </div>
   )
@@ -78,6 +104,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     removeFromCartThunk: item => dispatch(removeFromCartThunk(item)),
+    removeFromGuestCart: item => dispatch(removeFromGuestCart(item)),
     updateCartThunk: item => dispatch(updateCartThunk(item)),
     updateGuestCart: item => dispatch(updateGuestCart(item))
   }
