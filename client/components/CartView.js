@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
+import Payment from './Payment'
+import {Elements, StripeProvider} from 'react-stripe-elements'
 import {
   fetchCart,
   fetchCartForCartView,
@@ -38,6 +40,7 @@ class CartView extends React.Component {
             <li>Your cart is empty</li>
           )}
         </ul>
+
         <div>
           <form
             onSubmit={
@@ -87,6 +90,16 @@ class CartView extends React.Component {
               <i className="fad fa-shopping-cart" /> Place Order
             </button>
           </form>
+        </div>
+
+        <div>
+          <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+            <div className="example">
+              <Elements>
+                <Payment />
+              </Elements>
+            </div>
+          </StripeProvider>
         </div>
       </div>
     )
